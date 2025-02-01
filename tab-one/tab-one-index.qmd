@@ -1,12 +1,10 @@
 ---
-title: "Add a title to your Tab index page"
+title: "Decision Making Process"
 ---
 
-## Nemo enim ipsam
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-
+## DMP
+The **decision-making process** is a systematic approach to choosing the best course of action among multiple alternatives to achieve a desired outcome. It typically involves identifying the problem, gathering information, evaluating options, and making a choice followed by implementation and review.
 ## Add an image
 
-![](/images/workflow.png)
+![](/images/DMP.webp)
 
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.

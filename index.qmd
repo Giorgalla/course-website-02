@@ -1,12 +1,35 @@
 ---
-title: "Add a title"
+title: "About Me"
+format:
+  html: 
+    css: styles.css
 ---
 
-This is a Quarto website.
+![](images/profile.jpg){width=150px style="float: left; margin-right: 20px;"}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+**Name:** Varnavia Giorgalla  
+**Age:** 23  
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+**Education:**  
+- Bsc in Communication and Internet Studies  
+- Master still loading  
 
-## Nemo enim ipsam
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+**Favorite things:**
+
+<ul class="favorite-things">
+  <li>
+    ![](images/wolf.png){width=40px} Dogs
+  </li>
+  <li>
+    ![](images/coffee.png){width=40px} Coffee
+  </li>
+  <li>
+    ![](images/piano.png){width=40px} Piano
+  </li>
+  <li>
+    ![](images/movies.png){width=40px} Movies
+  </li>
+  <li>
+    ![](images/boxing.png){width=40px} Boxing
+  </li>
+</ul>

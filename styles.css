@@ -1,1 +1,24 @@
-/* css styles */
+img {
+  margin-bottom: 20px; /* Adds space between the image and text */
+}
+
+p, div {
+  font-size: 18px; /* Increases font size for better readability */
+  margin-top: 10px; /* Adds space above the text */
+}
+
+/* Style for the favorite things grid */
+ul.favorite-things {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns for the grid */
+  gap: 20px; /* Space between the items */
+  justify-items: center; /* Center all items horizontally */
+  align-items: center; /* Center all items vertically */
+  text-align: center; /* Center text under icons */
+}
+
+/* Force Boxing to occupy the middle column */
+ul.favorite-things li:nth-child(5) {
+  grid-column: 2; /* Place Boxing in the center column */
+}
+
