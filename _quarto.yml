@@ -7,7 +7,7 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: About Me
       - href: tab-one/tab-one-index.qmd
         text: DMP
       - href: tab-presentation/presentation-index.qmd
