@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#what-this-course-is-about",
+    "href": "tab-presentation/presentation1/presentation-example.html#what-this-course-is-about",
+    "title": "Course overview",
+    "section": "What this course is about",
+    "text": "What this course is about\n\n\n1. Workflow\n\n\n\n\n2. Communicating data"
+  },
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#communicating-data-dashboard",
+    "href": "tab-presentation/presentation1/presentation-example.html#communicating-data-dashboard",
+    "title": "Course overview",
+    "section": "Communicating data: Dashboard",
+    "text": "Communicating data: Dashboard"
+  },
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#example-dashboard-2",
+    "href": "tab-presentation/presentation1/presentation-example.html#example-dashboard-2",
+    "title": "Course overview",
+    "section": "Example Dashboard 2",
+    "text": "Example Dashboard 2"
+  },
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#example-dashboard-3",
+    "href": "tab-presentation/presentation1/presentation-example.html#example-dashboard-3",
+    "title": "Course overview",
+    "section": "Example Dashboard 3",
+    "text": "Example Dashboard 3"
+  },
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#example-dashboard-4",
+    "href": "tab-presentation/presentation1/presentation-example.html#example-dashboard-4",
+    "title": "Course overview",
+    "section": "Example Dashboard 4",
+    "text": "Example Dashboard 4"
+  },
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#what-is-a-dashboard",
+    "href": "tab-presentation/presentation1/presentation-example.html#what-is-a-dashboard",
+    "title": "Course overview",
+    "section": "What is a Dashboard?",
+    "text": "What is a Dashboard?\n\nDashboards provide a visual display of the most important information needed to achieve one or more objectives.\nThey consolidate and arrange information on a single screen.\n\nKey Characteristics of Effective Dashboards\n\nClarity: Information should be easy to read and interpret.\nAccuracy: Data must be accurate and up-to-date.\nRelevance: Content should align with user goals and needs."
+  },
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#definition-by-stephen-few",
+    "href": "tab-presentation/presentation1/presentation-example.html#definition-by-stephen-few",
+    "title": "Course overview",
+    "section": "Definition by Stephen Few",
+    "text": "Definition by Stephen Few"
+  },
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#the-role-of-visual-design",
+    "href": "tab-presentation/presentation1/presentation-example.html#the-role-of-visual-design",
+    "title": "Course overview",
+    "section": "The Role of Visual Design",
+    "text": "The Role of Visual Design\n\nMinimize distractions and unnecessary elements.\nUse consistent layouts and formatting.\nApply thoughtful use of color and typography.\n\nBest Practices for Dashboard Design\n\nAvoid clutter: Only display essential information.\nPrioritize data: Highlight key metrics and KPIs.\nUse visual hierarchy: Direct the viewer’s focus to the most important elements."
+  },
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#common-pitfalls-to-avoid",
+    "href": "tab-presentation/presentation1/presentation-example.html#common-pitfalls-to-avoid",
+    "title": "Course overview",
+    "section": "Common Pitfalls to Avoid",
+    "text": "Common Pitfalls to Avoid\n\nOverloading the user with too much data.\nUsing overly complex or inconsistent designs.\nNeglecting the importance of user testing.\n\nWhat You Shoud Do\n\nFocus on the needs and goals of the dashboard’s end-users.\nIteratively test and refine designs to improve usability."
+  },
+  {
+    "objectID": "tab-presentation/presentation1/presentation-example.html#summary",
+    "href": "tab-presentation/presentation1/presentation-example.html#summary",
+    "title": "Course overview",
+    "section": "Summary",
+    "text": "Summary\n\nDashboards are powerful tools for decision-making.\nEffective dashboards balance clarity, relevance, and visual appeal.\nAvoid common pitfalls by focusing on user needs and testing designs."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Add a title",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+  },
+  {
+    "objectID": "index.html#nemo-enim-ipsam",
+    "href": "index.html#nemo-enim-ipsam",
+    "title": "Add a title",
+    "section": "Nemo enim ipsam",
+    "text": "Nemo enim ipsam\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+  },
+  {
+    "objectID": "tab-one/tab-one-index.html",
+    "href": "tab-one/tab-one-index.html",
+    "title": "Add a title to your Tab index page",
+    "section": "",
+    "text": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+  },
+  {
+    "objectID": "tab-one/tab-one-index.html#nemo-enim-ipsam",
+    "href": "tab-one/tab-one-index.html#nemo-enim-ipsam",
+    "title": "Add a title to your Tab index page",
+    "section": "",
+    "text": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+  },
+  {
+    "objectID": "tab-one/tab-one-index.html#add-an-image",
+    "href": "tab-one/tab-one-index.html#add-an-image",
+    "title": "Add a title to your Tab index page",
+    "section": "Add an image",
+    "text": "Add an image\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+  },
+  {
+    "objectID": "tab-presentation/presentation-index.html",
+    "href": "tab-presentation/presentation-index.html",
+    "title": "Examples of presentations",
+    "section": "",
+    "text": "Here we can add links to presentations.\nFor now you can access the presentation by adjusting the URL below with your details\nhttps://YOUR-GITHUB-ACCOUNT.github.io/NAME-OF-YOUR-GIT-REPO/tab-presentation/presentation1/presentation-example.html\nSimply change my capitalized text for your: i) your github username\nii) the name of your github repo then copy the URL and paste it to visit the webpage.\nThe adjusted URL above should take you to an example of a simple Quarto presentation."
+  }
+]
