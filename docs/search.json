@@ -21,6 +21,34 @@
     "text": "The decision-making process is a systematic approach to choosing the best course of action among multiple alternatives to achieve a desired outcome. It typically involves identifying the problem, gathering information, evaluating options, and making a choice followed by implementation and review. ## Add an image"
   },
   {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html",
+    "title": "Survey Data Analysis",
+    "section": "",
+    "text": "# Create data tables\n# Create Codebook\ncodebook &lt;- tibble(\n  variable_name = c(\"age\", \"gender\", \"education\", \"decision_factor\", \"decision_fatigue\", \"overanalysis\", \"decision_style\", \"cognitive_bias\", \"decision_strategies\", \"decision_confidence\"),\n  question = c(\n    \"What is your age?\",\n    \"What is your gender?\",\n    \"What is your education level?\",\n    \"When making a decision, which factor influences you the most?\",\n    \"How often do you experience decision fatigue?\",\n    \"Do you tend to overanalyze decisions before making them?\",\n    \"Which type of decision-making style best describes you?\",\n    \"Have you ever experienced cognitive bias affecting your decisions?\",\n    \"What strategies do you use to improve your decision-making process?\",\n    \"On a scale from 1-5, how confident are you in your decision-making skills?\"\n  )\n)\n\n# Generate a synthetic dataset\nset.seed(123)\ndata &lt;- tibble(\n  age = sample(18:65, 100, replace = TRUE),\n  gender = sample(c(\"Male\", \"Female\", \"Non-binary\", \"Prefer not to say\"), 100, replace = TRUE),\n  education = sample(c(\"High school or below\", \"Undergraduate degree\", \"Graduate degree\", \"Other\"), 100, replace = TRUE),\n  decision_factor = sample(c(\"Logical reasoning\", \"Emotions and intuition\", \"Social influences\", \"Past experiences\"), 100, replace = TRUE),\n  decision_fatigue = sample(c(\"Never\", \"Sometimes\", \"Often\", \"Always\"), 100, replace = TRUE),\n  overanalysis = sample(c(\"Yes\", \"No\", \"Sometimes\"), 100, replace = TRUE),\n  decision_style = sample(c(\"Rational\", \"Intuitive\", \"Dependent\", \"Avoidant\"), 100, replace = TRUE),\n  cognitive_bias = sample(c(\"Yes\", \"No\", \"Unsure\"), 100, replace = TRUE),\n  decision_strategies = sample(c(\"Seeking advice\", \"Analyzing pros and cons\", \"Taking time\", \"Relying on past experiences\"), 100, replace = TRUE),\n  decision_confidence = sample(1:5, 100, replace = TRUE)\n)"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#age-distribution",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#age-distribution",
+    "title": "Survey Data Analysis",
+    "section": "Age Distribution",
+    "text": "Age Distribution\n\n# Age distribution\nage_plot &lt;- ggplot(data, aes(x = age)) +\n  geom_histogram(binwidth = 5, fill = \"steelblue\", color = \"black\") +\n  labs(title = \"Age Distribution\", x = \"Age\", y = \"Frequency\") +\n  theme_minimal()\n\nage_plot"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#linear-regression-plot",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#linear-regression-plot",
+    "title": "Survey Data Analysis",
+    "section": "Linear regression plot",
+    "text": "Linear regression plot\n\n# Linear regression plot\nregression_plot &lt;- ggplot(data, aes(x = age, y = decision_confidence)) +\n  geom_point(color = \"blue\", alpha = 0.6) +\n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE) +\n  labs(\n    title = \"Linear Regression: Age vs Decision Confidence\",\n    x = \"Age\",\n    y = \"Decision Confidence (1-5)\"\n  ) +\n  theme_minimal()\n\nregression_plot\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#correlation-plot",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#correlation-plot",
+    "title": "Survey Data Analysis",
+    "section": "Correlation plot",
+    "text": "Correlation plot\n\n# Encode the categorical variables into numeric\nencoded_data &lt;- data %&gt;%\n  mutate(\n    decision_fatigue_num = as.numeric(factor(decision_fatigue, levels = c(\"Never\", \"Sometimes\", \"Often\", \"Always\"))),\n    decision_style_num = as.numeric(factor(decision_style, levels = c(\"Rational\", \"Intuitive\", \"Dependent\", \"Avoidant\")))\n  )\n\n# Select the encoded variables\nnumeric_data &lt;- encoded_data %&gt;% select(decision_fatigue_num, decision_style_num)\n\n# Compute the correlation matrix\ncorrelation_matrix &lt;- cor(numeric_data, use = \"complete.obs\", method = \"pearson\")\n\n# Reshape the correlation matrix for plotting\ncorrelation_long &lt;- reshape2::melt(correlation_matrix)\n\n# Plot the heatmap\ncategorical_correlation_plot &lt;- ggplot(correlation_long, aes(x = Var1, y = Var2, fill = value)) +\n  geom_tile(color = \"white\") +\n  scale_fill_gradient2(low = \"darkblue\", high = \"lightblue\", mid = \"white\", midpoint = 0, limit = c(-1, 1)) +\n  labs(\n    title = \"Correlation Heatmap: Decision Fatigue vs Decision Style\",\n    x = \"Variables\",\n    y = \"Variables\",\n    fill = \"Correlation\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\ncategorical_correlation_plot"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "About Me",

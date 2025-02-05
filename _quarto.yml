@@ -10,10 +10,12 @@ website:
         text: About Me
       - href: tab-one/tab-one-index.qmd
         text: DMP
+      - href: tab-iframe/iframe-index.qmd
+        text: Questionnair
       - href: tab-presentation/presentation-index.qmd
         text: Presentations        
-      - href: tab-iframe/iframe-index.qmd
-        text: iFrame example
+      - href: tab-SurveyDataAnalysis/DataAnalysis-index.qmd
+        text: Data Analysis
     logo: images/logo.png
 
 format:

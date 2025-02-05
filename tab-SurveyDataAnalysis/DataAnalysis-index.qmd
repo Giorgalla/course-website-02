@@ -1,0 +1,154 @@
+---
+title: "Survey Data Analysis"
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(forcats) # for data
+library(lubridate) # for dates
+library(conflicted) # for managing namespace conflicts (functions with the same name)
+conflicts_prefer(dplyr::select)
+conflicts_prefer(dplyr::filter)
+library(see)
+library(parameters)
+library(tibble)
+library(dplyr)
+library(lubridate)
+library(forcats)
+library(knitr)
+library(kableExtra)
+library(reshape2)
+
+```
+
+
+```{r datatables}
+# Create data tables
+# Create Codebook
+codebook <- tibble(
+  variable_name = c("age", "gender", "education", "decision_factor", "decision_fatigue", "overanalysis", "decision_style", "cognitive_bias", "decision_strategies", "decision_confidence"),
+  question = c(
+    "What is your age?",
+    "What is your gender?",
+    "What is your education level?",
+    "When making a decision, which factor influences you the most?",
+    "How often do you experience decision fatigue?",
+    "Do you tend to overanalyze decisions before making them?",
+    "Which type of decision-making style best describes you?",
+    "Have you ever experienced cognitive bias affecting your decisions?",
+    "What strategies do you use to improve your decision-making process?",
+    "On a scale from 1-5, how confident are you in your decision-making skills?"
+  )
+)
+
+# Generate a synthetic dataset
+set.seed(123)
+data <- tibble(
+  age = sample(18:65, 100, replace = TRUE),
+  gender = sample(c("Male", "Female", "Non-binary", "Prefer not to say"), 100, replace = TRUE),
+  education = sample(c("High school or below", "Undergraduate degree", "Graduate degree", "Other"), 100, replace = TRUE),
+  decision_factor = sample(c("Logical reasoning", "Emotions and intuition", "Social influences", "Past experiences"), 100, replace = TRUE),
+  decision_fatigue = sample(c("Never", "Sometimes", "Often", "Always"), 100, replace = TRUE),
+  overanalysis = sample(c("Yes", "No", "Sometimes"), 100, replace = TRUE),
+  decision_style = sample(c("Rational", "Intuitive", "Dependent", "Avoidant"), 100, replace = TRUE),
+  cognitive_bias = sample(c("Yes", "No", "Unsure"), 100, replace = TRUE),
+  decision_strategies = sample(c("Seeking advice", "Analyzing pros and cons", "Taking time", "Relying on past experiences"), 100, replace = TRUE),
+  decision_confidence = sample(1:5, 100, replace = TRUE)
+)
+  
+```
+
+
+# Introduction
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Proin lacinia dolor sit amet facilisis mollis. Donec ullamcorper elit non dui hendrerit efficitur.
+
+# Questionnaire
+
+The table below provides a codebook for the survey questionnaire, listing variable names and the corresponding questions:
+
+```{r codebook}
+codebook |>
+  kable(caption = "Survey Questionnaire Codebook") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+# Data Overview
+
+The survey dataset contains responses to questions on demographic and behavioral characteristics. Here is a preview of the first few rows:
+
+```{r data-preview}
+data |> 
+  head() |> 
+  kable(caption = "Survey Data Preview") |> 
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+# Descriptive Statistics
+
+## Age Distribution
+
+```{r age-plot}
+# Age distribution
+age_plot <- ggplot(data, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "steelblue", color = "black") +
+  labs(title = "Age Distribution", x = "Age", y = "Frequency") +
+  theme_minimal()
+
+age_plot
+```
+
+## Linear regression plot
+
+```{r regression-plot}
+# Linear regression plot
+regression_plot <- ggplot(data, aes(x = age, y = decision_confidence)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  labs(
+    title = "Linear Regression: Age vs Decision Confidence",
+    x = "Age",
+    y = "Decision Confidence (1-5)"
+  ) +
+  theme_minimal()
+
+regression_plot
+```
+
+## Correlation plot
+
+```{r correlation-plot}
+# Encode the categorical variables into numeric
+encoded_data <- data %>%
+  mutate(
+    decision_fatigue_num = as.numeric(factor(decision_fatigue, levels = c("Never", "Sometimes", "Often", "Always"))),
+    decision_style_num = as.numeric(factor(decision_style, levels = c("Rational", "Intuitive", "Dependent", "Avoidant")))
+  )
+
+# Select the encoded variables
+numeric_data <- encoded_data %>% select(decision_fatigue_num, decision_style_num)
+
+# Compute the correlation matrix
+correlation_matrix <- cor(numeric_data, use = "complete.obs", method = "pearson")
+
+# Reshape the correlation matrix for plotting
+correlation_long <- reshape2::melt(correlation_matrix)
+
+# Plot the heatmap
+categorical_correlation_plot <- ggplot(correlation_long, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(low = "darkblue", high = "lightblue", mid = "white", midpoint = 0, limit = c(-1, 1)) +
+  labs(
+    title = "Correlation Heatmap: Decision Fatigue vs Decision Style",
+    x = "Variables",
+    y = "Variables",
+    fill = "Correlation"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+categorical_correlation_plot
+```
+
+
+ 
