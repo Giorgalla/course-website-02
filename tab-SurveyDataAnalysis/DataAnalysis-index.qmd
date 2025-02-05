@@ -85,6 +85,33 @@ data |>
 ```
 
 # Descriptive Statistics
+```{r Encoding-data}
+# Encode categorical variables into numeric
+encoded_data <- data %>%
+  mutate(
+    gender_num = as.numeric(factor(gender)),
+    education_num = as.numeric(factor(education)),
+    decision_factor_num = as.numeric(factor(decision_factor)),
+    decision_fatigue_num = as.numeric(factor(decision_fatigue, levels = c("Never", "Sometimes", "Often", "Always"))),
+    overanalysis_num = as.numeric(factor(overanalysis)),
+    decision_style_num = as.numeric(factor(decision_style)),
+    cognitive_bias_num = as.numeric(factor(cognitive_bias)),
+    decision_strategies_num = as.numeric(factor(decision_strategies))
+  ) %>%
+  select(
+    age,
+    gender_num,
+    education_num,
+    decision_factor_num,
+    decision_fatigue_num,
+    overanalysis_num,
+    decision_style_num,
+    cognitive_bias_num,
+    decision_strategies_num,
+    decision_confidence
+  )
+  
+```
 
 ## Age Distribution
 
@@ -114,32 +141,55 @@ regression_plot <- ggplot(data, aes(x = age, y = decision_confidence)) +
 
 regression_plot
 ```
+## histogram_age_decision_fatigue
+
+```{r Histogram-plot}
+# Histogram of age with decision fatigue as fill
+histogram_age_decision_fatigue <- ggplot(data, aes(x = age, fill = decision_fatigue)) +
+  geom_histogram(binwidth = 5, color = "black", alpha = 0.7) +
+  labs(
+    title = "Age Distribution by Decision Fatigue",
+    x = "Age",
+    y = "Frequency",
+    fill = "Decision Fatigue"
+  ) +
+  theme_minimal()
+
+histogram_age_decision_fatigue
+```
+
+## box_plot_decision_confidence_gender
+
+```{r Box-plot}
+# Box plot for decision confidence by gender
+box_plot_decision_confidence_gender <- ggplot(data, aes(x = gender, y = decision_confidence, fill = gender)) +
+  geom_boxplot(color = "black") +
+  labs(
+    title = "Decision Confidence by Gender",
+    x = "Gender",
+    y = "Decision Confidence"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = "none")
+
+box_plot_decision_confidence_gender
+```
 
 ## Correlation plot
 
-```{r correlation-plot}
-# Encode the categorical variables into numeric
-encoded_data <- data %>%
-  mutate(
-    decision_fatigue_num = as.numeric(factor(decision_fatigue, levels = c("Never", "Sometimes", "Often", "Always"))),
-    decision_style_num = as.numeric(factor(decision_style, levels = c("Rational", "Intuitive", "Dependent", "Avoidant")))
-  )
-
-# Select the encoded variables
-numeric_data <- encoded_data %>% select(decision_fatigue_num, decision_style_num)
-
+```{r everything-corellation-plot}
 # Compute the correlation matrix
-correlation_matrix <- cor(numeric_data, use = "complete.obs", method = "pearson")
+correlation_matrix <- cor(encoded_data, use = "complete.obs", method = "pearson")
 
 # Reshape the correlation matrix for plotting
 correlation_long <- reshape2::melt(correlation_matrix)
 
 # Plot the heatmap
-categorical_correlation_plot <- ggplot(correlation_long, aes(x = Var1, y = Var2, fill = value)) +
+full_correlation_heatmap <- ggplot(correlation_long, aes(x = Var1, y = Var2, fill = value)) +
   geom_tile(color = "white") +
   scale_fill_gradient2(low = "darkblue", high = "lightblue", mid = "white", midpoint = 0, limit = c(-1, 1)) +
   labs(
-    title = "Correlation Heatmap: Decision Fatigue vs Decision Style",
+    title = "Full Correlation Heatmap",
     x = "Variables",
     y = "Variables",
     fill = "Correlation"
@@ -147,8 +197,8 @@ categorical_correlation_plot <- ggplot(correlation_long, aes(x = Var1, y = Var2,
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-categorical_correlation_plot
-```
+full_correlation_heatmap
 
+```
 
  

@@ -42,11 +42,25 @@
     "text": "Linear regression plot\n\n# Linear regression plot\nregression_plot &lt;- ggplot(data, aes(x = age, y = decision_confidence)) +\n  geom_point(color = \"blue\", alpha = 0.6) +\n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE) +\n  labs(\n    title = \"Linear Regression: Age vs Decision Confidence\",\n    x = \"Age\",\n    y = \"Decision Confidence (1-5)\"\n  ) +\n  theme_minimal()\n\nregression_plot\n\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#histogram_age_decision_fatigue",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#histogram_age_decision_fatigue",
+    "title": "Survey Data Analysis",
+    "section": "histogram_age_decision_fatigue",
+    "text": "histogram_age_decision_fatigue\n\n# Histogram of age with decision fatigue as fill\nhistogram_age_decision_fatigue &lt;- ggplot(data, aes(x = age, fill = decision_fatigue)) +\n  geom_histogram(binwidth = 5, color = \"black\", alpha = 0.7) +\n  labs(\n    title = \"Age Distribution by Decision Fatigue\",\n    x = \"Age\",\n    y = \"Frequency\",\n    fill = \"Decision Fatigue\"\n  ) +\n  theme_minimal()\n\nhistogram_age_decision_fatigue"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#box_plot_decision_confidence_gender",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#box_plot_decision_confidence_gender",
+    "title": "Survey Data Analysis",
+    "section": "box_plot_decision_confidence_gender",
+    "text": "box_plot_decision_confidence_gender\n\n# Box plot for decision confidence by gender\nbox_plot_decision_confidence_gender &lt;- ggplot(data, aes(x = gender, y = decision_confidence, fill = gender)) +\n  geom_boxplot(color = \"black\") +\n  labs(\n    title = \"Decision Confidence by Gender\",\n    x = \"Gender\",\n    y = \"Decision Confidence\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = \"none\")\n\nbox_plot_decision_confidence_gender"
+  },
+  {
     "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#correlation-plot",
     "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#correlation-plot",
     "title": "Survey Data Analysis",
     "section": "Correlation plot",
-    "text": "Correlation plot\n\n# Encode the categorical variables into numeric\nencoded_data &lt;- data %&gt;%\n  mutate(\n    decision_fatigue_num = as.numeric(factor(decision_fatigue, levels = c(\"Never\", \"Sometimes\", \"Often\", \"Always\"))),\n    decision_style_num = as.numeric(factor(decision_style, levels = c(\"Rational\", \"Intuitive\", \"Dependent\", \"Avoidant\")))\n  )\n\n# Select the encoded variables\nnumeric_data &lt;- encoded_data %&gt;% select(decision_fatigue_num, decision_style_num)\n\n# Compute the correlation matrix\ncorrelation_matrix &lt;- cor(numeric_data, use = \"complete.obs\", method = \"pearson\")\n\n# Reshape the correlation matrix for plotting\ncorrelation_long &lt;- reshape2::melt(correlation_matrix)\n\n# Plot the heatmap\ncategorical_correlation_plot &lt;- ggplot(correlation_long, aes(x = Var1, y = Var2, fill = value)) +\n  geom_tile(color = \"white\") +\n  scale_fill_gradient2(low = \"darkblue\", high = \"lightblue\", mid = \"white\", midpoint = 0, limit = c(-1, 1)) +\n  labs(\n    title = \"Correlation Heatmap: Decision Fatigue vs Decision Style\",\n    x = \"Variables\",\n    y = \"Variables\",\n    fill = \"Correlation\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\ncategorical_correlation_plot"
+    "text": "Correlation plot\n\n# Compute the correlation matrix\ncorrelation_matrix &lt;- cor(encoded_data, use = \"complete.obs\", method = \"pearson\")\n\n# Reshape the correlation matrix for plotting\ncorrelation_long &lt;- reshape2::melt(correlation_matrix)\n\n# Plot the heatmap\nfull_correlation_heatmap &lt;- ggplot(correlation_long, aes(x = Var1, y = Var2, fill = value)) +\n  geom_tile(color = \"white\") +\n  scale_fill_gradient2(low = \"darkblue\", high = \"lightblue\", mid = \"white\", midpoint = 0, limit = c(-1, 1)) +\n  labs(\n    title = \"Full Correlation Heatmap\",\n    x = \"Variables\",\n    y = \"Variables\",\n    fill = \"Correlation\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\nfull_correlation_heatmap"
   },
   {
     "objectID": "index.html",
