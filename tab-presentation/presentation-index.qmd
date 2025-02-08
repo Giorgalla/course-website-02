@@ -1,17 +1,63 @@
 ---
-title: "Examples of presentations"
+title: "Final Project Presentation"
+format: revealjs
+editor: visual
 ---
 
-Here we can add links to presentations.
+# Introduction
 
-For now you can access the presentation by adjusting the URL below with your details
+- **Final Project Plan**: To create a user-friendly **interactive dashboard** focused on **Cognitive Psychology and Decision-Making**.
+- The dashboard will analyze **synthetic data provided from R** and provide visualizations to explore trends and relationships.
 
-https://Giorgalla.github.io/course-website-02/tab-presentation/presentation1/presentation-example.html
+---
 
-Simply change my capitalized text for your: 
-i) your github username   
-ii) the name of your github repo
-then copy the URL and paste it to visit the webpage. 
+# Objectives
 
-The adjusted URL above should take you to an example of a simple Quarto presentation.
+- **Key Goals**:
+  1. Build an intuitive, web-based dashboard using **Quarto**.
+  2. Provide visual insights using bar plots, histograms, and heatmaps.
+  3. Allow users to filter data by variables such as age, gender, and decision style.
 
+---
+
+# Dashboard Features
+
+- **Main Sections**:
+  1. **Overview**: Summary statistics (age distribution, decision confidence).
+  2. **Interactive Visualizations**:
+     - Heatmaps to explore correlations.
+     - Bar plots for categorical data like decision styles.
+  3. **User Filters**: Dropdowns for filtering data dynamically.
+
+---
+
+# Tools & Technologies
+
+- **Technologies Used**:
+  - **R** with libraries like ggplot2, dplyr, and Quarto.
+  - **Quarto Framework** for building the dashboard.
+  - **Data Source**: Questionnaire responses.
+
+---
+
+# Timeline
+
+- **Phase 1**: Data Cleaning & Preparation.
+- **Phase 2**: Build Interactive Visualizations.
+- **Phase 3**: Develop Dashboard Interface.
+- **Phase 4**: Testing.
+
+---
+
+# Expected Outcome
+
+- **Deliverable**: An interactive dashboard that:
+  - Provides insights into decision-making behaviors.
+  - Enables dynamic data filtering for in-depth analysis.
+  - Is visually appealing and easy to navigate.
+
+---
+
+# Thank You!
+
+- **Questions?**

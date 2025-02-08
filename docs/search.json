@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "tab-presentation/presentation-index.html",
-    "href": "tab-presentation/presentation-index.html",
-    "title": "Examples of presentations",
-    "section": "",
-    "text": "Here we can add links to presentations.\nFor now you can access the presentation by adjusting the URL below with your details\nhttps://Giorgalla.github.io/course-website-02/tab-presentation/presentation1/presentation-example.html\nSimply change my capitalized text for your: i) your github username\nii) the name of your github repo then copy the URL and paste it to visit the webpage.\nThe adjusted URL above should take you to an example of a simple Quarto presentation."
-  },
-  {
     "objectID": "tab-one/tab-one-index.html",
     "href": "tab-one/tab-one-index.html",
     "title": "Decision Making Process",
