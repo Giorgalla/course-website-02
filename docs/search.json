@@ -1,68 +1,5 @@
 [
   {
-    "objectID": "tab-one/tab-one-index.html",
-    "href": "tab-one/tab-one-index.html",
-    "title": "Decision Making Process",
-    "section": "",
-    "text": "The decision-making process is a systematic approach to choosing the best course of action among multiple alternatives to achieve a desired outcome. It typically involves identifying the problem, gathering information, evaluating options, and making a choice followed by implementation and review. ## Add an image"
-  },
-  {
-    "objectID": "tab-one/tab-one-index.html#dmp",
-    "href": "tab-one/tab-one-index.html#dmp",
-    "title": "Decision Making Process",
-    "section": "",
-    "text": "The decision-making process is a systematic approach to choosing the best course of action among multiple alternatives to achieve a desired outcome. It typically involves identifying the problem, gathering information, evaluating options, and making a choice followed by implementation and review. ## Add an image"
-  },
-  {
-    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html",
-    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html",
-    "title": "Survey Data Analysis",
-    "section": "",
-    "text": "# Create data tables\n# Create Codebook\ncodebook &lt;- tibble(\n  variable_name = c(\"age\", \"gender\", \"education\", \"decision_factor\", \"decision_fatigue\", \"overanalysis\", \"decision_style\", \"cognitive_bias\", \"decision_strategies\", \"decision_confidence\"),\n  question = c(\n    \"What is your age?\",\n    \"What is your gender?\",\n    \"What is your education level?\",\n    \"When making a decision, which factor influences you the most?\",\n    \"How often do you experience decision fatigue?\",\n    \"Do you tend to overanalyze decisions before making them?\",\n    \"Which type of decision-making style best describes you?\",\n    \"Have you ever experienced cognitive bias affecting your decisions?\",\n    \"What strategies do you use to improve your decision-making process?\",\n    \"On a scale from 1-5, how confident are you in your decision-making skills?\"\n  )\n)\n\n# Generate a synthetic dataset\nset.seed(123)\ndata &lt;- tibble(\n  age = sample(18:65, 100, replace = TRUE),\n  gender = sample(c(\"Male\", \"Female\", \"Non-binary\", \"Prefer not to say\"), 100, replace = TRUE),\n  education = sample(c(\"High school or below\", \"Undergraduate degree\", \"Graduate degree\", \"Other\"), 100, replace = TRUE),\n  decision_factor = sample(c(\"Logical reasoning\", \"Emotions and intuition\", \"Social influences\", \"Past experiences\"), 100, replace = TRUE),\n  decision_fatigue = sample(c(\"Never\", \"Sometimes\", \"Often\", \"Always\"), 100, replace = TRUE),\n  overanalysis = sample(c(\"Yes\", \"No\", \"Sometimes\"), 100, replace = TRUE),\n  decision_style = sample(c(\"Rational\", \"Intuitive\", \"Dependent\", \"Avoidant\"), 100, replace = TRUE),\n  cognitive_bias = sample(c(\"Yes\", \"No\", \"Unsure\"), 100, replace = TRUE),\n  decision_strategies = sample(c(\"Seeking advice\", \"Analyzing pros and cons\", \"Taking time\", \"Relying on past experiences\"), 100, replace = TRUE),\n  decision_confidence = sample(1:5, 100, replace = TRUE)\n)"
-  },
-  {
-    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#age-distribution",
-    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#age-distribution",
-    "title": "Survey Data Analysis",
-    "section": "Age Distribution",
-    "text": "Age Distribution\n\n# Age distribution\nage_plot &lt;- ggplot(data, aes(x = age)) +\n  geom_histogram(binwidth = 5, fill = \"steelblue\", color = \"black\") +\n  labs(title = \"Age Distribution\", x = \"Age\", y = \"Frequency\") +\n  theme_minimal()\n\nage_plot"
-  },
-  {
-    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#linear-regression-plot",
-    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#linear-regression-plot",
-    "title": "Survey Data Analysis",
-    "section": "Linear regression plot",
-    "text": "Linear regression plot\n\n# Linear regression plot\nregression_plot &lt;- ggplot(data, aes(x = age, y = decision_confidence)) +\n  geom_point(color = \"blue\", alpha = 0.6) +\n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE) +\n  labs(\n    title = \"Linear Regression: Age vs Decision Confidence\",\n    x = \"Age\",\n    y = \"Decision Confidence (1-5)\"\n  ) +\n  theme_minimal()\n\nregression_plot\n\n`geom_smooth()` using formula = 'y ~ x'"
-  },
-  {
-    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#histogram_age_decision_fatigue",
-    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#histogram_age_decision_fatigue",
-    "title": "Survey Data Analysis",
-    "section": "histogram_age_decision_fatigue",
-    "text": "histogram_age_decision_fatigue\n\n# Histogram of age with decision fatigue as fill\nhistogram_age_decision_fatigue &lt;- ggplot(data, aes(x = age, fill = decision_fatigue)) +\n  geom_histogram(binwidth = 5, color = \"black\", alpha = 0.7) +\n  labs(\n    title = \"Age Distribution by Decision Fatigue\",\n    x = \"Age\",\n    y = \"Frequency\",\n    fill = \"Decision Fatigue\"\n  ) +\n  theme_minimal()\n\nhistogram_age_decision_fatigue"
-  },
-  {
-    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#box_plot_decision_confidence_gender",
-    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#box_plot_decision_confidence_gender",
-    "title": "Survey Data Analysis",
-    "section": "box_plot_decision_confidence_gender",
-    "text": "box_plot_decision_confidence_gender\n\n# Box plot for decision confidence by gender\nbox_plot_decision_confidence_gender &lt;- ggplot(data, aes(x = gender, y = decision_confidence, fill = gender)) +\n  geom_boxplot(color = \"black\") +\n  labs(\n    title = \"Decision Confidence by Gender\",\n    x = \"Gender\",\n    y = \"Decision Confidence\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = \"none\")\n\nbox_plot_decision_confidence_gender"
-  },
-  {
-    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#correlation-plot",
-    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#correlation-plot",
-    "title": "Survey Data Analysis",
-    "section": "Correlation plot",
-    "text": "Correlation plot\n\n# Compute the correlation matrix\ncorrelation_matrix &lt;- cor(encoded_data, use = \"complete.obs\", method = \"pearson\")\n\n# Reshape the correlation matrix for plotting\ncorrelation_long &lt;- reshape2::melt(correlation_matrix)\n\n# Plot the heatmap\nfull_correlation_heatmap &lt;- ggplot(correlation_long, aes(x = Var1, y = Var2, fill = value)) +\n  geom_tile(color = \"white\") +\n  scale_fill_gradient2(low = \"darkblue\", high = \"lightblue\", mid = \"white\", midpoint = 0, limit = c(-1, 1)) +\n  labs(\n    title = \"Full Correlation Heatmap\",\n    x = \"Variables\",\n    y = \"Variables\",\n    fill = \"Correlation\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\nfull_correlation_heatmap"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "About Me",
-    "section": "",
-    "text": "Name: Varnavia Giorgalla\nAge: 23\nEducation:\n- Bsc in Communication and Internet Studies\n- Master still loading\nFavorite things:\n\n\n Dogs\n\n\n Coffee\n\n\n Piano\n\n\n Movies\n\n\n Boxing"
-  },
-  {
     "objectID": "tab-presentation/presentation1/presentation-example.html#what-this-course-is-about",
     "href": "tab-presentation/presentation1/presentation-example.html#what-this-course-is-about",
     "title": "Course overview",
@@ -131,5 +68,110 @@
     "title": "Course overview",
     "section": "Summary",
     "text": "Summary\n\nDashboards are powerful tools for decision-making.\nEffective dashboards balance clarity, relevance, and visual appeal.\nAvoid common pitfalls by focusing on user needs and testing designs."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "About Me",
+    "section": "",
+    "text": "Name: Varnavia Giorgalla\nAge: 23\nEducation:\n- Bsc in Communication and Internet Studies\n- Master still loading\nFavorite things:\n\n\n Dogs\n\n\n Coffee\n\n\n Piano\n\n\n Movies\n\n\n Boxing"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html",
+    "title": "Survey Data Analysis",
+    "section": "",
+    "text": "Code\n# Create data tables\n# Create Codebook\nlibrary(tibble)\nlibrary(dplyr)\nlibrary(lubridate)\nlibrary(forcats)\nlibrary(knitr)\nlibrary(kableExtra)\nlibrary(ggplot2)\nlibrary(reshape2)\n\n# Create Codebook\ncodebook &lt;- tibble(\n  variable_name = c(\"age\", \"gender\", \"education\", \"decision_factor\", \"decision_fatigue\", \"overanalysis\", \"decision_style\", \"cognitive_bias\", \"decision_strategies\", \"decision_confidence\"),\n  question = c(\n    \"What is your age?\",\n    \"What is your gender?\",\n    \"What is your education level?\",\n    \"When making a decision, which factor influences you the most?\",\n    \"How often do you experience decision fatigue?\",\n    \"Do you tend to overanalyze decisions before making them?\",\n    \"Which type of decision-making style best describes you?\",\n    \"Have you ever experienced cognitive bias affecting your decisions?\",\n    \"What strategies do you use to improve your decision-making process?\",\n    \"On a scale from 1-5, how confident are you in your decision-making skills?\"\n  )\n)\n\n# Generate a synthetic dataset with skewed probabilities\nset.seed(123)\nn &lt;- 100\n\n# Skewed age distribution (older individuals more common)\nage &lt;- round(rexp(n, rate = 0.05) + 18)  # Skewed towards older ages\nage &lt;- pmin(age, 65)  # Cap at 65\n\n# Gender distribution (balanced)\ngender &lt;- sample(c(\"Male\", \"Female\", \"Non-binary\", \"Prefer not to say\"), n, replace = TRUE, prob = c(0.45, 0.45, 0.05, 0.05))\n\n# Education levels (higher education more common in older individuals)\neducation &lt;- sample(c(\"High school or below\", \"Undergraduate degree\", \"Graduate degree\", \"Other\"), n, replace = TRUE, prob = c(0.3, 0.4, 0.25, 0.05))\n\n# Decision factor (older individuals favor logical reasoning)\ndecision_factor &lt;- sample(c(\"Logical reasoning\", \"Emotions and intuition\", \"Social influences\", \"Past experiences\"), n, replace = TRUE, prob = c(0.4, 0.2, 0.2, 0.2))\n\n# Decision fatigue (correlated with age: older individuals experience more fatigue)\ndecision_fatigue_probs &lt;- pmin((age - 18) / 65, 1)\ndecision_fatigue &lt;- sample(c(\"Never\", \"Sometimes\", \"Often\", \"Always\"), n, replace = TRUE, prob = c(0.2, 0.3, 0.3, 0.2))\n\n# Overanalysis (more likely for those with graduate degrees)\noveranalysis &lt;- sample(c(\"Yes\", \"No\", \"Sometimes\"), n, replace = TRUE, prob = c(0.3, 0.4, 0.3))\n\n# Decision style (randomly distributed)\ndecision_style &lt;- sample(c(\"Rational\", \"Intuitive\", \"Dependent\", \"Avoidant\"), n, replace = TRUE, prob = c(0.35, 0.25, 0.2, 0.2))\n\n# Cognitive bias (slightly more common in younger individuals)\ncognitive_bias &lt;- sample(c(\"Yes\", \"No\", \"Unsure\"), n, replace = TRUE, prob = c(0.5, 0.3, 0.2))\n\n# Decision strategies (randomly distributed)\ndecision_strategies &lt;- sample(c(\"Seeking advice\", \"Analyzing pros and cons\", \"Taking time\", \"Relying on past experiences\"), n, replace = TRUE)\n\n# Decision confidence (higher age → slightly higher confidence)\ndecision_confidence &lt;- pmin((age - 18) %/% 10 + sample(1:5, n, replace = TRUE), 5)\n\n# Create DataFrame\ndata &lt;- tibble(\n    age = age,\n    gender = gender,\n    education = education,\n    decision_factor = decision_factor,\n    decision_fatigue = decision_fatigue,\n    overanalysis = overanalysis,\n    decision_style = decision_style,\n    cognitive_bias = cognitive_bias,\n    decision_strategies = decision_strategies,\n    decision_confidence = decision_confidence\n)"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#age-distribution",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#age-distribution",
+    "title": "Survey Data Analysis",
+    "section": "Age Distribution",
+    "text": "Age Distribution\n\n\nCode\n# Age distribution\nage_plot &lt;- ggplot(data, aes(x = age)) +\n  geom_histogram(binwidth = 5, fill = \"steelblue\", color = \"black\") +\n  labs(title = \"Age Distribution\", x = \"Age\", y = \"Frequency\") +\n  theme_minimal()\n\nage_plot"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#linear-regression-plot",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#linear-regression-plot",
+    "title": "Survey Data Analysis",
+    "section": "Linear regression plot",
+    "text": "Linear regression plot\n\n\nCode\n# Linear regression plot\nregression_plot &lt;- ggplot(data, aes(x = age, y = decision_confidence)) +\n  geom_point(color = \"blue\", alpha = 0.6) +\n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE) +\n  labs(\n    title = \"Linear Regression: Age vs Decision Confidence\",\n    x = \"Age\",\n    y = \"Decision Confidence (1-5)\"\n  ) +\n  theme_minimal()\n\nregression_plot\n\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#histogram_age_decision_fatigue",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#histogram_age_decision_fatigue",
+    "title": "Survey Data Analysis",
+    "section": "histogram_age_decision_fatigue",
+    "text": "histogram_age_decision_fatigue\n\n\nCode\n# Histogram of age with decision fatigue as fill\nhistogram_age_decision_fatigue &lt;- ggplot(data, aes(x = age, fill = decision_fatigue)) +\n  geom_histogram(binwidth = 5, color = \"black\", alpha = 0.7) +\n  labs(\n    title = \"Age Distribution by Decision Fatigue\",\n    x = \"Age\",\n    y = \"Frequency\",\n    fill = \"Decision Fatigue\"\n  ) +\n  theme_minimal()\n\nhistogram_age_decision_fatigue"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#box_plot_decision_confidence_gender",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#box_plot_decision_confidence_gender",
+    "title": "Survey Data Analysis",
+    "section": "box_plot_decision_confidence_gender",
+    "text": "box_plot_decision_confidence_gender\n\n\nCode\n# Box plot for decision confidence by gender\nbox_plot_decision_confidence_gender &lt;- ggplot(data, aes(x = gender, y = decision_confidence, fill = gender)) +\n  geom_boxplot(color = \"black\") +\n  labs(\n    title = \"Decision Confidence by Gender\",\n    x = \"Gender\",\n    y = \"Decision Confidence\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = \"none\")\n\nbox_plot_decision_confidence_gender"
+  },
+  {
+    "objectID": "tab-SurveyDataAnalysis/DataAnalysis-index.html#correlation-plot",
+    "href": "tab-SurveyDataAnalysis/DataAnalysis-index.html#correlation-plot",
+    "title": "Survey Data Analysis",
+    "section": "Correlation plot",
+    "text": "Correlation plot\n\n\nCode\n# Compute the correlation matrix\ncorrelation_matrix &lt;- cor(encoded_data, use = \"complete.obs\", method = \"pearson\")\n\n# Reshape the correlation matrix for plotting\ncorrelation_long &lt;- reshape2::melt(correlation_matrix)\n\n# Plot the heatmap\nfull_correlation_heatmap &lt;- ggplot(correlation_long, aes(x = Var1, y = Var2, fill = value)) +\n  geom_tile(color = \"white\") +\n  scale_fill_gradient2(low = \"darkblue\", high = \"lightblue\", mid = \"white\", midpoint = 0, limit = c(-1, 1)) +\n  labs(\n    title = \"Full Correlation Heatmap\",\n    x = \"Variables\",\n    y = \"Variables\",\n    fill = \"Correlation\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\nfull_correlation_heatmap"
+  },
+  {
+    "objectID": "tab-one/tab-one-index.html",
+    "href": "tab-one/tab-one-index.html",
+    "title": "Decision Making Process",
+    "section": "",
+    "text": "The decision-making process is a systematic approach to choosing the best course of action among multiple alternatives to achieve a desired outcome. It typically involves identifying the problem, gathering information, evaluating options, and making a choice followed by implementation and review. ## Add an image"
+  },
+  {
+    "objectID": "tab-one/tab-one-index.html#dmp",
+    "href": "tab-one/tab-one-index.html#dmp",
+    "title": "Decision Making Process",
+    "section": "",
+    "text": "The decision-making process is a systematic approach to choosing the best course of action among multiple alternatives to achieve a desired outcome. It typically involves identifying the problem, gathering information, evaluating options, and making a choice followed by implementation and review. ## Add an image"
+  },
+  {
+    "objectID": "tab-dashboard/interactive-index.html",
+    "href": "tab-dashboard/interactive-index.html",
+    "title": "Interactive Dashboard Decision-Making Analysis",
+    "section": "",
+    "text": "The table below provides a codebook for the survey questionnaire, listing variable names and the corresponding questions:\n\n\nCode\ncodebook |&gt;\n  kable(caption = \"Survey Questionnaire Codebook\") %&gt;%\n  kable_styling(bootstrap_options = c(\"striped\", \"hover\"), full_width = FALSE)\n\n\n\nSurvey Questionnaire Codebook\n\n\nvariable_name\nquestion\n\n\n\n\nage\nWhat is your age?\n\n\ngender\nWhat is your gender?\n\n\neducation\nWhat is your education level?\n\n\ndecision_factor\nWhen making a decision, which factor influences you the most?\n\n\ndecision_fatigue\nHow often do you experience decision fatigue?\n\n\noveranalysis\nDo you tend to overanalyze decisions before making them?\n\n\ndecision_style\nWhich type of decision-making style best describes you?\n\n\ncognitive_bias\nHave you ever experienced cognitive bias affecting your decisions?\n\n\ndecision_strategies\nWhat strategies do you use to improve your decision-making process?\n\n\ndecision_confidence\nOn a scale from 1-5, how confident are you in your decision-making skills?"
+  },
+  {
+    "objectID": "tab-dashboard/interactive-index.html#explanation",
+    "href": "tab-dashboard/interactive-index.html#explanation",
+    "title": "Interactive Dashboard Decision-Making Analysis",
+    "section": "Explanation:",
+    "text": "Explanation:\nThis scatter plot explores how age relates to decision confidence across various education levels. Users can filter the graph to observe differences in trends based on education. For instance, older individuals with higher education levels may report greater decision confidence."
+  },
+  {
+    "objectID": "tab-dashboard/interactive-index.html#explanation-1",
+    "href": "tab-dashboard/interactive-index.html#explanation-1",
+    "title": "Interactive Dashboard Decision-Making Analysis",
+    "section": "Explanation:",
+    "text": "Explanation:\nThis histogram shows the distribution of age for different education levels. Users can select a specific education level to examine its age profile. This helps identify whether older or younger individuals are more common within each education bracket."
+  },
+  {
+    "objectID": "tab-dashboard/interactive-index.html#explanation-2",
+    "href": "tab-dashboard/interactive-index.html#explanation-2",
+    "title": "Interactive Dashboard Decision-Making Analysis",
+    "section": "Explanation:",
+    "text": "Explanation:\nThis interactive bar chart allows users to filter the data based on gender and explore the distribution of decision-making styles for each gender. It provides insights into how different genders approach decision-making."
+  },
+  {
+    "objectID": "tab-dashboard/interactive-index.html#explanation-3",
+    "href": "tab-dashboard/interactive-index.html#explanation-3",
+    "title": "Interactive Dashboard Decision-Making Analysis",
+    "section": "Explanation:",
+    "text": "Explanation:\nThis interactive bar chart shows how individuals with different education levels respond when asked about their tendency to overanalyze decisions. It helps identify whether people with higher education levels tend to overanalyze more."
+  },
+  {
+    "objectID": "tab-dashboard/interactive-index.html#explanation-4",
+    "href": "tab-dashboard/interactive-index.html#explanation-4",
+    "title": "Interactive Dashboard Decision-Making Analysis",
+    "section": "Explanation:",
+    "text": "Explanation:\nThis interactive bubble plot showcases the relationship between age and decision confidence, filtered by cognitive bias status. The size of each bubble reflects the level of confidence for each individual. This representation highlights trends in confidence levels across different ages while providing an intuitive visual cue through bubble sizes."
   }
 ]

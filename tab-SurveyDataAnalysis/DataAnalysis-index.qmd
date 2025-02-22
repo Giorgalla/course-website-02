@@ -1,5 +1,9 @@
 ---
 title: "Survey Data Analysis"
+format:
+  html:
+    code-fold: true
+    code-summary: "Code"
 ---
 
 ```{r setup, include=FALSE}
@@ -25,6 +29,16 @@ library(reshape2)
 ```{r datatables}
 # Create data tables
 # Create Codebook
+library(tibble)
+library(dplyr)
+library(lubridate)
+library(forcats)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(reshape2)
+
+# Create Codebook
 codebook <- tibble(
   variable_name = c("age", "gender", "education", "decision_factor", "decision_fatigue", "overanalysis", "decision_style", "cognitive_bias", "decision_strategies", "decision_confidence"),
   question = c(
@@ -41,27 +55,58 @@ codebook <- tibble(
   )
 )
 
-# Generate a synthetic dataset
+# Generate a synthetic dataset with skewed probabilities
 set.seed(123)
+n <- 100
+
+# Skewed age distribution (older individuals more common)
+age <- round(rexp(n, rate = 0.05) + 18)  # Skewed towards older ages
+age <- pmin(age, 65)  # Cap at 65
+
+# Gender distribution (balanced)
+gender <- sample(c("Male", "Female", "Non-binary", "Prefer not to say"), n, replace = TRUE, prob = c(0.45, 0.45, 0.05, 0.05))
+
+# Education levels (higher education more common in older individuals)
+education <- sample(c("High school or below", "Undergraduate degree", "Graduate degree", "Other"), n, replace = TRUE, prob = c(0.3, 0.4, 0.25, 0.05))
+
+# Decision factor (older individuals favor logical reasoning)
+decision_factor <- sample(c("Logical reasoning", "Emotions and intuition", "Social influences", "Past experiences"), n, replace = TRUE, prob = c(0.4, 0.2, 0.2, 0.2))
+
+# Decision fatigue (correlated with age: older individuals experience more fatigue)
+decision_fatigue_probs <- pmin((age - 18) / 65, 1)
+decision_fatigue <- sample(c("Never", "Sometimes", "Often", "Always"), n, replace = TRUE, prob = c(0.2, 0.3, 0.3, 0.2))
+
+# Overanalysis (more likely for those with graduate degrees)
+overanalysis <- sample(c("Yes", "No", "Sometimes"), n, replace = TRUE, prob = c(0.3, 0.4, 0.3))
+
+# Decision style (randomly distributed)
+decision_style <- sample(c("Rational", "Intuitive", "Dependent", "Avoidant"), n, replace = TRUE, prob = c(0.35, 0.25, 0.2, 0.2))
+
+# Cognitive bias (slightly more common in younger individuals)
+cognitive_bias <- sample(c("Yes", "No", "Unsure"), n, replace = TRUE, prob = c(0.5, 0.3, 0.2))
+
+# Decision strategies (randomly distributed)
+decision_strategies <- sample(c("Seeking advice", "Analyzing pros and cons", "Taking time", "Relying on past experiences"), n, replace = TRUE)
+
+# Decision confidence (higher age → slightly higher confidence)
+decision_confidence <- pmin((age - 18) %/% 10 + sample(1:5, n, replace = TRUE), 5)
+
+# Create DataFrame
 data <- tibble(
-  age = sample(18:65, 100, replace = TRUE),
-  gender = sample(c("Male", "Female", "Non-binary", "Prefer not to say"), 100, replace = TRUE),
-  education = sample(c("High school or below", "Undergraduate degree", "Graduate degree", "Other"), 100, replace = TRUE),
-  decision_factor = sample(c("Logical reasoning", "Emotions and intuition", "Social influences", "Past experiences"), 100, replace = TRUE),
-  decision_fatigue = sample(c("Never", "Sometimes", "Often", "Always"), 100, replace = TRUE),
-  overanalysis = sample(c("Yes", "No", "Sometimes"), 100, replace = TRUE),
-  decision_style = sample(c("Rational", "Intuitive", "Dependent", "Avoidant"), 100, replace = TRUE),
-  cognitive_bias = sample(c("Yes", "No", "Unsure"), 100, replace = TRUE),
-  decision_strategies = sample(c("Seeking advice", "Analyzing pros and cons", "Taking time", "Relying on past experiences"), 100, replace = TRUE),
-  decision_confidence = sample(1:5, 100, replace = TRUE)
+    age = age,
+    gender = gender,
+    education = education,
+    decision_factor = decision_factor,
+    decision_fatigue = decision_fatigue,
+    overanalysis = overanalysis,
+    decision_style = decision_style,
+    cognitive_bias = cognitive_bias,
+    decision_strategies = decision_strategies,
+    decision_confidence = decision_confidence
 )
+
   
 ```
-
-
-# Introduction
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Proin lacinia dolor sit amet facilisis mollis. Donec ullamcorper elit non dui hendrerit efficitur.
 
 # Questionnaire
 

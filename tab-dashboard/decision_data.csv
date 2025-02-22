@@ -1,0 +1,101 @@
+"age","gender","education","decision_factor","decision_fatigue","overanalysis","decision_style","cognitive_bias","decision_strategies","decision_confidence"
+35,"Female","Undergraduate degree","Emotions and intuition","Often","Sometimes","Rational","No","Analyzing pros and cons",3
+30,"Female","Undergraduate degree","Social influences","Always","Sometimes","Rational","Unsure","Relying on past experiences",2
+45,"Female","Graduate degree","Social influences","Always","Yes","Intuitive","Yes","Analyzing pros and cons",5
+19,"Female","Graduate degree","Emotions and intuition","Often","Yes","Intuitive","Yes","Taking time",3
+19,"Male","Other","Past experiences","Always","Sometimes","Avoidant","Yes","Taking time",4
+24,"Female","High school or below","Logical reasoning","Sometimes","No","Rational","Yes","Analyzing pros and cons",2
+24,"Female","Undergraduate degree","Logical reasoning","Sometimes","Sometimes","Intuitive","No","Relying on past experiences",4
+21,"Female","High school or below","Emotions and intuition","Always","Sometimes","Intuitive","Unsure","Seeking advice",3
+65,"Female","Graduate degree","Social influences","Sometimes","Yes","Dependent","Yes","Relying on past experiences",5
+19,"Male","Undergraduate degree","Past experiences","Never","Yes","Dependent","Unsure","Taking time",3
+38,"Female","Undergraduate degree","Logical reasoning","Often","Yes","Avoidant","Yes","Seeking advice",5
+28,"Male","Undergraduate degree","Past experiences","Always","No","Avoidant","No","Taking time",3
+24,"Female","Undergraduate degree","Social influences","Never","Yes","Avoidant","Unsure","Taking time",5
+26,"Female","Undergraduate degree","Emotions and intuition","Sometimes","No","Intuitive","Yes","Taking time",2
+22,"Male","Undergraduate degree","Logical reasoning","Sometimes","No","Intuitive","Yes","Seeking advice",1
+35,"Female","Undergraduate degree","Logical reasoning","Always","Sometimes","Rational","Yes","Relying on past experiences",3
+49,"Non-binary","Undergraduate degree","Logical reasoning","Often","Yes","Intuitive","Yes","Analyzing pros and cons",5
+28,"Non-binary","High school or below","Logical reasoning","Never","Sometimes","Rational","Unsure","Taking time",4
+30,"Male","Undergraduate degree","Emotions and intuition","Never","Sometimes","Rational","Unsure","Taking time",3
+65,"Male","Undergraduate degree","Logical reasoning","Sometimes","No","Dependent","No","Relying on past experiences",5
+35,"Prefer not to say","Undergraduate degree","Past experiences","Often","Yes","Intuitive","Yes","Relying on past experiences",5
+37,"Female","Graduate degree","Past experiences","Always","No","Rational","Yes","Seeking advice",5
+48,"Non-binary","Graduate degree","Logical reasoning","Sometimes","No","Rational","Unsure","Seeking advice",5
+45,"Female","Graduate degree","Logical reasoning","Never","Yes","Intuitive","Yes","Seeking advice",5
+41,"Male","Other","Logical reasoning","Sometimes","Sometimes","Rational","Yes","Relying on past experiences",3
+50,"Female","Undergraduate degree","Logical reasoning","Sometimes","No","Rational","Yes","Taking time",5
+48,"Male","Undergraduate degree","Logical reasoning","Always","Yes","Intuitive","Yes","Taking time",5
+49,"Female","Graduate degree","Emotions and intuition","Always","No","Intuitive","Yes","Relying on past experiences",5
+19,"Male","Graduate degree","Emotions and intuition","Often","No","Avoidant","Yes","Relying on past experiences",1
+30,"Prefer not to say","Undergraduate degree","Logical reasoning","Often","Sometimes","Rational","Yes","Relying on past experiences",5
+61,"Female","Graduate degree","Emotions and intuition","Sometimes","No","Rational","Yes","Seeking advice",5
+28,"Female","Graduate degree","Social influences","Sometimes","No","Avoidant","Yes","Seeking advice",4
+23,"Male","High school or below","Logical reasoning","Often","No","Rational","Yes","Relying on past experiences",1
+65,"Female","High school or below","Social influences","Sometimes","Yes","Dependent","Unsure","Analyzing pros and cons",5
+43,"Male","Undergraduate degree","Past experiences","Often","No","Intuitive","Yes","Relying on past experiences",5
+34,"Male","Undergraduate degree","Logical reasoning","Often","Yes","Intuitive","Yes","Taking time",2
+31,"Male","High school or below","Logical reasoning","Never","No","Rational","No","Taking time",2
+43,"Male","High school or below","Past experiences","Often","No","Intuitive","No","Analyzing pros and cons",4
+30,"Female","Undergraduate degree","Logical reasoning","Often","Sometimes","Dependent","Yes","Relying on past experiences",3
+41,"Male","High school or below","Emotions and intuition","Sometimes","No","Intuitive","No","Seeking advice",5
+26,"Male","Graduate degree","Logical reasoning","Never","No","Dependent","Yes","Taking time",3
+65,"Female","Undergraduate degree","Social influences","Often","Yes","Dependent","Unsure","Seeking advice",5
+35,"Male","Undergraduate degree","Logical reasoning","Always","Sometimes","Intuitive","No","Relying on past experiences",3
+23,"Female","Graduate degree","Logical reasoning","Sometimes","Yes","Intuitive","Yes","Relying on past experiences",5
+40,"Male","Graduate degree","Emotions and intuition","Often","Yes","Rational","Yes","Seeking advice",3
+63,"Male","Undergraduate degree","Logical reasoning","Always","Yes","Rational","Yes","Taking time",5
+45,"Female","Undergraduate degree","Social influences","Sometimes","Yes","Avoidant","No","Analyzing pros and cons",4
+30,"Non-binary","Graduate degree","Logical reasoning","Never","No","Rational","No","Taking time",3
+65,"Male","Graduate degree","Social influences","Often","Yes","Intuitive","No","Taking time",5
+44,"Prefer not to say","Undergraduate degree","Past experiences","Often","Yes","Dependent","Yes","Relying on past experiences",5
+20,"Female","Undergraduate degree","Social influences","Often","Yes","Dependent","No","Taking time",4
+24,"Female","Graduate degree","Logical reasoning","Sometimes","No","Avoidant","Unsure","Analyzing pros and cons",5
+39,"Male","Undergraduate degree","Emotions and intuition","Often","No","Dependent","No","Seeking advice",5
+24,"Male","Undergraduate degree","Past experiences","Always","No","Dependent","Yes","Taking time",4
+37,"Female","Other","Logical reasoning","Never","No","Avoidant","Yes","Relying on past experiences",5
+56,"Female","Undergraduate degree","Logical reasoning","Sometimes","Yes","Dependent","Yes","Relying on past experiences",5
+29,"Female","Undergraduate degree","Logical reasoning","Never","No","Dependent","Yes","Taking time",5
+65,"Non-binary","Graduate degree","Emotions and intuition","Often","No","Rational","No","Analyzing pros and cons",5
+39,"Female","High school or below","Emotions and intuition","Never","Yes","Intuitive","Yes","Analyzing pros and cons",4
+38,"Male","Undergraduate degree","Social influences","Always","Yes","Avoidant","No","Relying on past experiences",5
+39,"Female","Graduate degree","Logical reasoning","Often","Sometimes","Dependent","Yes","Relying on past experiences",5
+24,"Male","Graduate degree","Emotions and intuition","Never","Yes","Avoidant","No","Relying on past experiences",3
+49,"Male","Undergraduate degree","Logical reasoning","Sometimes","No","Rational","No","Analyzing pros and cons",5
+19,"Male","High school or below","Past experiences","Always","No","Rational","No","Relying on past experiences",2
+20,"Male","High school or below","Logical reasoning","Often","Yes","Avoidant","No","Taking time",2
+20,"Female","High school or below","Social influences","Never","Yes","Avoidant","No","Taking time",1
+24,"Male","High school or below","Logical reasoning","Often","Yes","Rational","Yes","Analyzing pros and cons",3
+24,"Female","Other","Logical reasoning","Sometimes","Sometimes","Rational","Yes","Seeking advice",5
+37,"Female","High school or below","Logical reasoning","Never","Sometimes","Avoidant","Unsure","Relying on past experiences",4
+36,"Female","Undergraduate degree","Social influences","Sometimes","Yes","Rational","No","Relying on past experiences",5
+51,"Male","High school or below","Past experiences","Never","Yes","Rational","No","Seeking advice",4
+50,"Female","Undergraduate degree","Logical reasoning","Sometimes","No","Intuitive","Yes","Seeking advice",5
+65,"Male","High school or below","Emotions and intuition","Always","No","Rational","No","Analyzing pros and cons",5
+48,"Female","Undergraduate degree","Past experiences","Never","Sometimes","Intuitive","Yes","Seeking advice",5
+26,"Male","Other","Past experiences","Sometimes","Yes","Dependent","Unsure","Analyzing pros and cons",5
+23,"Prefer not to say","Undergraduate degree","Logical reasoning","Never","No","Rational","Yes","Analyzing pros and cons",5
+27,"Prefer not to say","Undergraduate degree","Logical reasoning","Never","No","Dependent","Yes","Taking time",5
+19,"Female","High school or below","Past experiences","Often","Sometimes","Avoidant","Yes","Taking time",4
+24,"Male","Undergraduate degree","Social influences","Often","Yes","Rational","Yes","Taking time",3
+31,"Male","Other","Logical reasoning","Sometimes","Yes","Rational","No","Relying on past experiences",4
+29,"Female","High school or below","Logical reasoning","Often","Sometimes","Rational","Unsure","Taking time",3
+22,"Male","Undergraduate degree","Logical reasoning","Never","Sometimes","Rational","No","Analyzing pros and cons",2
+65,"Female","High school or below","Logical reasoning","Often","Yes","Intuitive","No","Analyzing pros and cons",5
+55,"Female","Other","Emotions and intuition","Often","Yes","Intuitive","Yes","Analyzing pros and cons",5
+32,"Male","High school or below","Emotions and intuition","Always","Yes","Intuitive","Unsure","Taking time",3
+47,"Male","High school or below","Past experiences","Often","No","Avoidant","Yes","Taking time",5
+53,"Female","Undergraduate degree","Logical reasoning","Often","Sometimes","Rational","Yes","Taking time",4
+43,"Female","Graduate degree","Logical reasoning","Sometimes","No","Rational","Unsure","Seeking advice",3
+47,"Non-binary","Undergraduate degree","Emotions and intuition","Sometimes","Yes","Intuitive","Yes","Taking time",3
+49,"Female","Undergraduate degree","Social influences","Never","Yes","Rational","Yes","Seeking advice",4
+18,"Female","Graduate degree","Social influences","Always","No","Intuitive","No","Taking time",3
+40,"Prefer not to say","Undergraduate degree","Logical reasoning","Sometimes","Yes","Intuitive","Yes","Analyzing pros and cons",3
+24,"Female","Undergraduate degree","Social influences","Always","No","Intuitive","No","Relying on past experiences",2
+42,"Female","Graduate degree","Logical reasoning","Always","No","Rational","Yes","Relying on past experiences",5
+40,"Male","Undergraduate degree","Logical reasoning","Often","Yes","Rational","Yes","Seeking advice",5
+19,"Male","Undergraduate degree","Past experiences","Never","No","Intuitive","Yes","Seeking advice",4
+28,"Male","High school or below","Logical reasoning","Often","Sometimes","Dependent","No","Seeking advice",4
+49,"Female","High school or below","Emotions and intuition","Never","No","Dependent","No","Taking time",5
+23,"Female","High school or below","Logical reasoning","Often","No","Avoidant","Yes","Relying on past experiences",2
+55,"Male","Undergraduate degree","Emotions and intuition","Never","Sometimes","Avoidant","Yes","Seeking advice",5

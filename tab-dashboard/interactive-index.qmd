@@ -1,0 +1,329 @@
+---
+title: 'Interactive Dashboard Decision-Making Analysis'
+format: 
+  html:
+    code-fold: true
+    code-summary: "Code" 
+---
+
+
+```{r datatables, include=FALSE}
+# Create data tables
+# Create Codebook
+library(ggpubr)
+library(tibble)
+library(dplyr)
+library(lubridate)
+library(forcats)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(reshape2)
+
+# Create Codebook
+codebook <- tibble(
+  variable_name = c("age", "gender", "education", "decision_factor", "decision_fatigue", "overanalysis", "decision_style", "cognitive_bias", "decision_strategies", "decision_confidence"),
+  question = c(
+    "What is your age?",
+    "What is your gender?",
+    "What is your education level?",
+    "When making a decision, which factor influences you the most?",
+    "How often do you experience decision fatigue?",
+    "Do you tend to overanalyze decisions before making them?",
+    "Which type of decision-making style best describes you?",
+    "Have you ever experienced cognitive bias affecting your decisions?",
+    "What strategies do you use to improve your decision-making process?",
+    "On a scale from 1-5, how confident are you in your decision-making skills?"
+  )
+)
+
+# Generate a synthetic dataset with skewed probabilities
+set.seed(123)
+n <- 100
+
+# Skewed age distribution (older individuals more common)
+age <- round(rexp(n, rate = 0.05) + 18)  # Skewed towards older ages
+age <- pmin(age, 65)  # Cap at 65
+
+# Gender distribution (balanced)
+gender <- sample(c("Male", "Female", "Non-binary", "Prefer not to say"), n, replace = TRUE, prob = c(0.45, 0.45, 0.05, 0.05))
+
+# Education levels (higher education more common in older individuals)
+education <- sample(c("High school or below", "Undergraduate degree", "Graduate degree", "Other"), n, replace = TRUE, prob = c(0.3, 0.4, 0.25, 0.05))
+
+# Decision factor (older individuals favor logical reasoning)
+decision_factor <- sample(c("Logical reasoning", "Emotions and intuition", "Social influences", "Past experiences"), n, replace = TRUE, prob = c(0.4, 0.2, 0.2, 0.2))
+
+# Decision fatigue (correlated with age: older individuals experience more fatigue)
+decision_fatigue_probs <- pmin((age - 18) / 65, 1)
+decision_fatigue <- sample(c("Never", "Sometimes", "Often", "Always"), n, replace = TRUE, prob = c(0.2, 0.3, 0.3, 0.2))
+
+# Overanalysis (more likely for those with graduate degrees)
+overanalysis <- sample(c("Yes", "No", "Sometimes"), n, replace = TRUE, prob = c(0.3, 0.4, 0.3))
+
+# Decision style (randomly distributed)
+decision_style <- sample(c("Rational", "Intuitive", "Dependent", "Avoidant"), n, replace = TRUE, prob = c(0.35, 0.25, 0.2, 0.2))
+
+# Cognitive bias (slightly more common in younger individuals)
+cognitive_bias <- sample(c("Yes", "No", "Unsure"), n, replace = TRUE, prob = c(0.5, 0.3, 0.2))
+
+# Decision strategies (randomly distributed)
+decision_strategies <- sample(c("Seeking advice", "Analyzing pros and cons", "Taking time", "Relying on past experiences"), n, replace = TRUE)
+
+# Decision confidence (higher age → slightly higher confidence)
+decision_confidence <- pmin((age - 18) %/% 10 + sample(1:5, n, replace = TRUE), 5)
+
+# Create DataFrame
+data <- tibble(
+    age = age,
+    gender = gender,
+    education = education,
+    decision_factor = decision_factor,
+    decision_fatigue = decision_fatigue,
+    overanalysis = overanalysis,
+    decision_style = decision_style,
+    cognitive_bias = cognitive_bias,
+    decision_strategies = decision_strategies,
+    decision_confidence = decision_confidence
+)
+write.csv(data, "decision_data.csv", row.names = FALSE)
+  
+```
+# Questionnaire
+
+The table below provides a codebook for the survey questionnaire, listing variable names and the corresponding questions:
+
+```{r codebook}
+codebook |>
+  kable(caption = "Survey Questionnaire Codebook") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+# Data Overview
+
+The survey dataset contains responses to questions on demographic and behavioral characteristics. Here is a preview of the first few rows:
+
+```{r data-preview}
+data |> 
+  head() |> 
+  kable(caption = "Survey Data Preview") |> 
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+# Decision Fatigue Distribution
+
+```{r}
+ggplot(data, aes(x = decision_fatigue)) +
+  geom_bar(fill = "#1f77b4", color = "black") +  # Steel blue fill with black border
+  labs(title = "Distribution of Decision Fatigue", x = "Decision Fatigue", y = "Count") +
+  theme_minimal() +
+  theme(
+    panel.background = element_rect(fill = "#d3d3d3"),  # Light gray background
+    panel.grid.major = element_line(color = "gray80"),  # Light grid lines
+    panel.grid.minor = element_line(color = "gray90"),
+    text = element_text(size = 14)  # Adjust text size
+  )
+```
+
+```{r}
+data_summary <- data %>%
+  group_by(decision_fatigue, decision_style) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  mutate(percent = (count / sum(count)) * 100)
+
+# Generate the grouped bar plot
+ggbarplot(
+  data_summary,
+  x = "decision_fatigue",
+  y = "percent",
+  fill = "decision_style",
+  palette = "jco",  # Color palette similar to reference
+  label = TRUE,     # Show values on bars
+  position = position_dodge(0.9),
+  xlab = "Decision Fatigue",
+  ylab = "Percent",
+  title = "Distribution of Decision Fatigue by Decision Style",
+  legend.title = "Decision Style"
+) + theme_minimal()
+```
+# 1. Age vs Decision Confidence by Education Level 
+```{ojs}
+//| code-fold: true
+data = FileAttachment('decision_data.csv').csv({ typed: true })
+
+viewof education_filter = Inputs.select(
+  ["High school or below", "Undergraduate degree", "Graduate degree", "Other"],
+  { value: "Undergraduate degree", label: "Select Education Level:" }
+)
+
+filtered_data = data.filter(d => d.education === education_filter)
+
+Plot.dot(filtered_data, {
+  x: "age",
+  y: "decision_confidence",
+  stroke: d => {
+    if (d.education === "High school or below") return "steelblue";
+    if (d.education === "Undergraduate degree") return "darkred";
+    if (d.education === "Graduate degree") return "gold";
+    return "purple";
+  },
+  fill: d => {
+    if (d.education === "High school or below") return "steelblue";
+    if (d.education === "Undergraduate degree") return "darkred";
+    if (d.education === "Graduate degree") return "gold";
+    return "purple";
+  },
+  r: 4, // Slightly bigger for easier hover
+  title: d => `Age: ${d.age}\nConfidence: ${d.decision_confidence}\nEducation: ${d.education}` // Hover Tooltip
+}).plot({
+  style: {
+    "font-size": "14px",           // General font size
+    "axis-label-font-size": "16px", // Axis label size
+    "axis-tick-font-size": "14px"   // Axis tick size
+  }
+})
+
+```
+## Explanation:
+This scatter plot explores how age relates to decision confidence across various education levels. Users can filter the graph to observe differences in trends based on education. For instance, older individuals with higher education levels may report greater decision confidence.
+
+# 2. Age Distribution by Education Level
+```{ojs}
+//| code-fold: true
+viewof education_filter_age = Inputs.select(
+  ["High school or below", "Undergraduate degree", "Graduate degree", "Other"],
+  { value: "Undergraduate degree", label: "Select Education Level:" }
+)
+
+filtered_age = data.filter(d => d.education === education_filter_age)
+
+Plot.rectY(
+  filtered_age,
+  Plot.binX(
+    { y: "count", title: (d, i) => `Age Range: ${i.x0} - ${i.x1}\nCount: ${i.length}\nEducation: ${education_filter_age}` }, // Hover Tooltip
+    { x: "age", thresholds: 10, fill: d => {
+      if (d.education === "High school or below") return "steelblue";
+      if (d.education === "Undergraduate degree") return "darkred";
+      if (d.education === "Graduate degree") return "gold";
+      return "purple";
+    }}
+  )
+).plot({
+  style: {
+    "font-size": "14px",            // General font size
+    "axis-label-font-size": "16px",  // Axis label size
+    "axis-tick-font-size": "14px"    // Axis tick size
+  }
+})
+
+```
+## Explanation:
+This histogram shows the distribution of age for different education levels. Users can select a specific education level to examine its age profile. This helps identify whether older or younger individuals are more common within each education bracket.
+
+# 3. Gender vs Decision Style
+```{ojs}
+//| code-fold: true
+
+viewof gender_filter = Inputs.select(
+  ["Male", "Female", "Non-binary", "Prefer not to say"],
+  { value: "Female", label: "Select Gender:" }
+)
+
+filtered_gender_data = data.filter(d => d.gender === gender_filter)
+
+Plot.barY(
+  filtered_gender_data,
+  Plot.groupX(
+    { y: "count", title: (d) => `Decision Style: ${d.decision_style}\nCount: ${d.length}\nGender: ${gender_filter}` }, // Hover Tooltip
+    { x: "decision_style", fill: "decision_style" }
+  )
+).plot({
+  style: {
+    "font-size": "14px",            // General font size
+    "axis-label-font-size": "16px",  // Axis label size
+    "axis-tick-font-size": "14px"    // Axis tick size
+  }
+})
+
+```
+## Explanation:
+This interactive bar chart allows users to filter the data based on gender and explore the distribution of decision-making styles for each gender. It provides insights into how different genders approach decision-making.
+
+# 4. Education vs Overanalysis 
+```{ojs}
+//| code-fold: true
+
+// Renamed the filter to avoid duplication error
+viewof education_filter_overanalysis = Inputs.select(
+  ["High school or below", "Undergraduate degree", "Graduate degree", "Other"],
+  { value: "Undergraduate degree", label: "Select Education Level:" }
+)
+
+// Apply the new filter variable
+filtered_education_data = data.filter(d => d.education === education_filter_overanalysis)
+
+// Create the interactive bar chart with tooltips
+Plot.barY(
+  filtered_education_data,
+  Plot.groupX(
+    { 
+      y: "count", 
+      title: (d) => `Overanalysis: ${d.overanalysis}\nCount: ${d.length}\nEducation: ${education_filter_overanalysis}` // Hover Tooltip
+    },
+    { x: "overanalysis", fill: "overanalysis" }
+  )
+).plot({
+  style: {
+    "font-size": "14px",            // Font size for general text
+    "axis-label-font-size": "16px",  // Font size for axis labels
+    "axis-tick-font-size": "14px"    // Font size for axis ticks
+  }
+})
+
+```
+## Explanation:
+This interactive bar chart shows how individuals with different education levels respond when asked about their tendency to overanalyze decisions. It helps identify whether people with higher education levels tend to overanalyze more.
+
+# 5. Cognitive Bias by Age
+```{ojs}
+//| code-fold: true
+
+// ✅ Use a unique name for the dropdown to avoid conflicts
+viewof cognitive_bias_filter = Inputs.select(
+  ["Yes", "No", "Unsure"],
+  { value: "Yes", label: "Select Cognitive Bias Status:" }
+)
+
+// ✅ Use a unique name for filtered data
+filtered_cognitive_bias_data = data.filter(d => d.cognitive_bias === cognitive_bias_filter)
+
+Plot.plot({
+  marks: [
+    Plot.dot(filtered_cognitive_bias_data, {
+      x: "age",
+      y: "decision_confidence",
+      r: d => d.decision_confidence * 2, // Bubble size reflects confidence
+      fill: d => {
+        if (d.cognitive_bias === "Yes") return "steelblue";
+        if (d.cognitive_bias === "No") return "darkred";
+        return "gold"; // For "Unsure"
+      },
+      stroke: "black", // Bubble border
+      title: d => `Age: ${d.age}\nConfidence: ${d.decision_confidence}`
+    })
+  ],
+  x: { label: "Age" },
+  y: { label: "Decision Confidence" },
+  width: 600,
+  height: 400,
+  style: {
+    "font-size": "14px",
+    "axis-label-font-size": "16px",
+    "axis-tick-font-size": "14px"
+  }
+})
+
+```
+## Explanation:
+This interactive bubble plot showcases the relationship between age and decision confidence, filtered by cognitive bias status. The size of each bubble reflects the level of confidence for each individual. This representation highlights trends in confidence levels across different ages while providing an intuitive visual cue through bubble sizes.
+

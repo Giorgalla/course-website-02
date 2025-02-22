@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Interactive Dashboard Decision-Making Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a263e05d4b056e890162460baa634a0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tab-one/tab-one-index.html"> 
+<span class="menu-text">DMP</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tab-iframe/iframe-index.html"> 
+<span class="menu-text">Questionnair</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tab-presentation/presentation-index.html"> 
+<span class="menu-text">Presentations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tab-SurveyDataAnalysis/DataAnalysis-index.html"> 
+<span class="menu-text">Data Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../tab-dashboard/interactive-index.html" aria-current="page"> 
+<span class="menu-text">Interactive Dashboard</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#questionnaire" id="toc-questionnaire" class="nav-link active" data-scroll-target="#questionnaire">Questionnaire</a></li>
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview">Data Overview</a></li>
+  <li><a href="#decision-fatigue-distribution" id="toc-decision-fatigue-distribution" class="nav-link" data-scroll-target="#decision-fatigue-distribution">Decision Fatigue Distribution</a></li>
+  <li><a href="#age-vs-decision-confidence-by-education-level" id="toc-age-vs-decision-confidence-by-education-level" class="nav-link" data-scroll-target="#age-vs-decision-confidence-by-education-level">1. Age vs Decision Confidence by Education Level</a>
+  <ul class="collapse">
+  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">Explanation:</a></li>
+  </ul></li>
+  <li><a href="#age-distribution-by-education-level" id="toc-age-distribution-by-education-level" class="nav-link" data-scroll-target="#age-distribution-by-education-level">2. Age Distribution by Education Level</a>
+  <ul class="collapse">
+  <li><a href="#explanation-1" id="toc-explanation-1" class="nav-link" data-scroll-target="#explanation-1">Explanation:</a></li>
+  </ul></li>
+  <li><a href="#gender-vs-decision-style" id="toc-gender-vs-decision-style" class="nav-link" data-scroll-target="#gender-vs-decision-style">3. Gender vs Decision Style</a>
+  <ul class="collapse">
+  <li><a href="#explanation-2" id="toc-explanation-2" class="nav-link" data-scroll-target="#explanation-2">Explanation:</a></li>
+  </ul></li>
+  <li><a href="#education-vs-overanalysis" id="toc-education-vs-overanalysis" class="nav-link" data-scroll-target="#education-vs-overanalysis">4. Education vs Overanalysis</a>
+  <ul class="collapse">
+  <li><a href="#explanation-3" id="toc-explanation-3" class="nav-link" data-scroll-target="#explanation-3">Explanation:</a></li>
+  </ul></li>
+  <li><a href="#cognitive-bias-by-age" id="toc-cognitive-bias-by-age" class="nav-link" data-scroll-target="#cognitive-bias-by-age">5. Cognitive Bias by Age</a>
+  <ul class="collapse">
+  <li><a href="#explanation-4" id="toc-explanation-4" class="nav-link" data-scroll-target="#explanation-4">Explanation:</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Interactive Dashboard Decision-Making Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="questionnaire" class="level1">
+<h1>Questionnaire</h1>
+<p>The table below provides a codebook for the survey questionnaire, listing variable names and the corresponding questions:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>codebook <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Survey Questionnaire Codebook"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Survey Questionnaire Codebook</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable_name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">What is your age?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gender</td>
+<td style="text-align: left;">What is your gender?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">education</td>
+<td style="text-align: left;">What is your education level?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">decision_factor</td>
+<td style="text-align: left;">When making a decision, which factor influences you the most?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">decision_fatigue</td>
+<td style="text-align: left;">How often do you experience decision fatigue?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overanalysis</td>
+<td style="text-align: left;">Do you tend to overanalyze decisions before making them?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">decision_style</td>
+<td style="text-align: left;">Which type of decision-making style best describes you?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cognitive_bias</td>
+<td style="text-align: left;">Have you ever experienced cognitive bias affecting your decisions?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">decision_strategies</td>
+<td style="text-align: left;">What strategies do you use to improve your decision-making process?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">decision_confidence</td>
+<td style="text-align: left;">On a scale from 1-5, how confident are you in your decision-making skills?</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="data-overview" class="level1">
+<h1>Data Overview</h1>
+<p>The survey dataset contains responses to questions on demographic and behavioral characteristics. Here is a preview of the first few rows:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Survey Data Preview"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Survey Data Preview</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">age</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">education</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">decision_factor</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">decision_fatigue</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">overanalysis</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">decision_style</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">cognitive_bias</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">decision_strategies</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">decision_confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">35</td>
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">Undergraduate degree</td>
+<td style="text-align: left;">Emotions and intuition</td>
+<td style="text-align: left;">Often</td>
+<td style="text-align: left;">Sometimes</td>
+<td style="text-align: left;">Rational</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Analyzing pros and cons</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">Undergraduate degree</td>
+<td style="text-align: left;">Social influences</td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">Sometimes</td>
+<td style="text-align: left;">Rational</td>
+<td style="text-align: left;">Unsure</td>
+<td style="text-align: left;">Relying on past experiences</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">Graduate degree</td>
+<td style="text-align: left;">Social influences</td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Intuitive</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Analyzing pros and cons</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">Graduate degree</td>
+<td style="text-align: left;">Emotions and intuition</td>
+<td style="text-align: left;">Often</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Intuitive</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Taking time</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">Male</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">Past experiences</td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">Sometimes</td>
+<td style="text-align: left;">Avoidant</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Taking time</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">High school or below</td>
+<td style="text-align: left;">Logical reasoning</td>
+<td style="text-align: left;">Sometimes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Rational</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Analyzing pros and cons</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="decision-fatigue-distribution" class="level1">
+<h1>Decision Fatigue Distribution</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> decision_fatigue)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#1f77b4"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span>  <span class="co"># Steel blue fill with black border</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Decision Fatigue"</span>, <span class="at">x =</span> <span class="st">"Decision Fatigue"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#d3d3d3"</span>),  <span class="co"># Light gray background</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray80"</span>),  <span class="co"># Light grid lines</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)  <span class="co"># Adjust text size</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="interactive-index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_summary <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(decision_fatigue, decision_style) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the grouped bar plot</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbarplot</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  data_summary,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"decision_fatigue"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"percent"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="st">"decision_style"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">"jco"</span>,  <span class="co"># Color palette similar to reference</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="cn">TRUE</span>,     <span class="co"># Show values on bars</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Decision Fatigue"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Percent"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Distribution of Decision Fatigue by Decision Style"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.title =</span> <span class="st">"Decision Style"</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="interactive-index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="age-vs-decision-confidence-by-education-level" class="level1">
+<h1>1. Age vs Decision Confidence by Education Level</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5" data-startfrom="152" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 151;"><span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">'decision_data.csv'</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>viewof education_filter <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"High school or below"</span><span class="op">,</span> <span class="st">"Undergraduate degree"</span><span class="op">,</span> <span class="st">"Graduate degree"</span><span class="op">,</span> <span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"Undergraduate degree"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Select Education Level:"</span> }</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> education_filter)</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">dot</span>(filtered_data<span class="op">,</span> {</span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> <span class="st">"age"</span><span class="op">,</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> <span class="st">"decision_confidence"</span><span class="op">,</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> d <span class="kw">=&gt;</span> {</span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> <span class="st">"High school or below"</span>) <span class="cf">return</span> <span class="st">"steelblue"</span><span class="op">;</span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> <span class="st">"Undergraduate degree"</span>) <span class="cf">return</span> <span class="st">"darkred"</span><span class="op">;</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> <span class="st">"Graduate degree"</span>) <span class="cf">return</span> <span class="st">"gold"</span><span class="op">;</span></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"purple"</span><span class="op">;</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> {</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> <span class="st">"High school or below"</span>) <span class="cf">return</span> <span class="st">"steelblue"</span><span class="op">;</span></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> <span class="st">"Undergraduate degree"</span>) <span class="cf">return</span> <span class="st">"darkred"</span><span class="op">;</span></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> <span class="st">"Graduate degree"</span>) <span class="cf">return</span> <span class="st">"gold"</span><span class="op">;</span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"purple"</span><span class="op">;</span></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>  <span class="dt">r</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span> <span class="co">// Slightly bigger for easier hover</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`Age: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">age</span><span class="sc">}\n</span><span class="vs">Confidence: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">decision_confidence</span><span class="sc">}\n</span><span class="vs">Education: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">education</span><span class="sc">}</span><span class="vs">`</span> <span class="co">// Hover Tooltip</span></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>})<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font-size"</span><span class="op">:</span> <span class="st">"14px"</span><span class="op">,</span>           <span class="co">// General font size</span></span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-label-font-size"</span><span class="op">:</span> <span class="st">"16px"</span><span class="op">,</span> <span class="co">// Axis label size</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-tick-font-size"</span><span class="op">:</span> <span class="st">"14px"</span>   <span class="co">// Axis tick size</span></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<section id="explanation" class="level2">
+<h2 class="anchored" data-anchor-id="explanation">Explanation:</h2>
+<p>This scatter plot explores how age relates to decision confidence across various education levels. Users can filter the graph to observe differences in trends based on education. For instance, older individuals with higher education levels may report greater decision confidence.</p>
+</section>
+</section>
+<section id="age-distribution-by-education-level" class="level1">
+<h1>2. Age Distribution by Education Level</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6" data-startfrom="193" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 192;"><span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>viewof education_filter_age <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"High school or below"</span><span class="op">,</span> <span class="st">"Undergraduate degree"</span><span class="op">,</span> <span class="st">"Graduate degree"</span><span class="op">,</span> <span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"Undergraduate degree"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Select Education Level:"</span> }</span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>filtered_age <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> education_filter_age)</span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">rectY</span>(</span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>  filtered_age<span class="op">,</span></span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>  Plot<span class="op">.</span><span class="fu">binX</span>(</span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">y</span><span class="op">:</span> <span class="st">"count"</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> (d<span class="op">,</span> i) <span class="kw">=&gt;</span> <span class="vs">`Age Range: </span><span class="sc">${</span>i<span class="op">.</span><span class="at">x0</span><span class="sc">}</span><span class="vs"> - </span><span class="sc">${</span>i<span class="op">.</span><span class="at">x1</span><span class="sc">}\n</span><span class="vs">Count: </span><span class="sc">${</span>i<span class="op">.</span><span class="at">length</span><span class="sc">}\n</span><span class="vs">Education: </span><span class="sc">${</span>education_filter_age<span class="sc">}</span><span class="vs">`</span> }<span class="op">,</span> <span class="co">// Hover Tooltip</span></span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">x</span><span class="op">:</span> <span class="st">"age"</span><span class="op">,</span> <span class="dt">thresholds</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> {</span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> <span class="st">"High school or below"</span>) <span class="cf">return</span> <span class="st">"steelblue"</span><span class="op">;</span></span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> <span class="st">"Undergraduate degree"</span>) <span class="cf">return</span> <span class="st">"darkred"</span><span class="op">;</span></span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> <span class="st">"Graduate degree"</span>) <span class="cf">return</span> <span class="st">"gold"</span><span class="op">;</span></span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">"purple"</span><span class="op">;</span></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a>    }}</span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a>)<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font-size"</span><span class="op">:</span> <span class="st">"14px"</span><span class="op">,</span>            <span class="co">// General font size</span></span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-label-font-size"</span><span class="op">:</span> <span class="st">"16px"</span><span class="op">,</span>  <span class="co">// Axis label size</span></span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-tick-font-size"</span><span class="op">:</span> <span class="st">"14px"</span>    <span class="co">// Axis tick size</span></span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<section id="explanation-1" class="level2">
+<h2 class="anchored" data-anchor-id="explanation-1">Explanation:</h2>
+<p>This histogram shows the distribution of age for different education levels. Users can select a specific education level to examine its age profile. This helps identify whether older or younger individuals are more common within each education bracket.</p>
+</section>
+</section>
+<section id="gender-vs-decision-style" class="level1">
+<h1>3. Gender vs Decision Style</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7" data-startfrom="227" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 226;"><span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a>viewof gender_filter <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Male"</span><span class="op">,</span> <span class="st">"Female"</span><span class="op">,</span> <span class="st">"Non-binary"</span><span class="op">,</span> <span class="st">"Prefer not to say"</span>]<span class="op">,</span></span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"Female"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Select Gender:"</span> }</span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a>filtered_gender_data <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">gender</span> <span class="op">===</span> gender_filter)</span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">barY</span>(</span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a>  filtered_gender_data<span class="op">,</span></span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a>  Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">y</span><span class="op">:</span> <span class="st">"count"</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`Decision Style: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">decision_style</span><span class="sc">}\n</span><span class="vs">Count: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">length</span><span class="sc">}\n</span><span class="vs">Gender: </span><span class="sc">${</span>gender_filter<span class="sc">}</span><span class="vs">`</span> }<span class="op">,</span> <span class="co">// Hover Tooltip</span></span>
+<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">x</span><span class="op">:</span> <span class="st">"decision_style"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"decision_style"</span> }</span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a>)<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font-size"</span><span class="op">:</span> <span class="st">"14px"</span><span class="op">,</span>            <span class="co">// General font size</span></span>
+<span id="cb7-243"><a href="#cb7-243" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-label-font-size"</span><span class="op">:</span> <span class="st">"16px"</span><span class="op">,</span>  <span class="co">// Axis label size</span></span>
+<span id="cb7-244"><a href="#cb7-244" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-tick-font-size"</span><span class="op">:</span> <span class="st">"14px"</span>    <span class="co">// Axis tick size</span></span>
+<span id="cb7-245"><a href="#cb7-245" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-246"><a href="#cb7-246" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<section id="explanation-2" class="level2">
+<h2 class="anchored" data-anchor-id="explanation-2">Explanation:</h2>
+<p>This interactive bar chart allows users to filter the data based on gender and explore the distribution of decision-making styles for each gender. It provides insights into how different genders approach decision-making.</p>
+</section>
+</section>
+<section id="education-vs-overanalysis" class="level1">
+<h1>4. Education vs Overanalysis</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8" data-startfrom="257" data-source-offset="-50"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 256;"><span id="cb8-257"><a href="#cb8-257" aria-hidden="true" tabindex="-1"></a>viewof education_filter_overanalysis <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb8-258"><a href="#cb8-258" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"High school or below"</span><span class="op">,</span> <span class="st">"Undergraduate degree"</span><span class="op">,</span> <span class="st">"Graduate degree"</span><span class="op">,</span> <span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb8-259"><a href="#cb8-259" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"Undergraduate degree"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Select Education Level:"</span> }</span>
+<span id="cb8-260"><a href="#cb8-260" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-261"><a href="#cb8-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-262"><a href="#cb8-262" aria-hidden="true" tabindex="-1"></a><span class="co">// Apply the new filter variable</span></span>
+<span id="cb8-263"><a href="#cb8-263" aria-hidden="true" tabindex="-1"></a>filtered_education_data <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">education</span> <span class="op">===</span> education_filter_overanalysis)</span>
+<span id="cb8-264"><a href="#cb8-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-265"><a href="#cb8-265" aria-hidden="true" tabindex="-1"></a><span class="co">// Create the interactive bar chart with tooltips</span></span>
+<span id="cb8-266"><a href="#cb8-266" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">barY</span>(</span>
+<span id="cb8-267"><a href="#cb8-267" aria-hidden="true" tabindex="-1"></a>  filtered_education_data<span class="op">,</span></span>
+<span id="cb8-268"><a href="#cb8-268" aria-hidden="true" tabindex="-1"></a>  Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb8-269"><a href="#cb8-269" aria-hidden="true" tabindex="-1"></a>    { </span>
+<span id="cb8-270"><a href="#cb8-270" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"count"</span><span class="op">,</span> </span>
+<span id="cb8-271"><a href="#cb8-271" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`Overanalysis: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">overanalysis</span><span class="sc">}\n</span><span class="vs">Count: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">length</span><span class="sc">}\n</span><span class="vs">Education: </span><span class="sc">${</span>education_filter_overanalysis<span class="sc">}</span><span class="vs">`</span> <span class="co">// Hover Tooltip</span></span>
+<span id="cb8-272"><a href="#cb8-272" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb8-273"><a href="#cb8-273" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">x</span><span class="op">:</span> <span class="st">"overanalysis"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"overanalysis"</span> }</span>
+<span id="cb8-274"><a href="#cb8-274" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-275"><a href="#cb8-275" aria-hidden="true" tabindex="-1"></a>)<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-276"><a href="#cb8-276" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb8-277"><a href="#cb8-277" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font-size"</span><span class="op">:</span> <span class="st">"14px"</span><span class="op">,</span>            <span class="co">// Font size for general text</span></span>
+<span id="cb8-278"><a href="#cb8-278" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-label-font-size"</span><span class="op">:</span> <span class="st">"16px"</span><span class="op">,</span>  <span class="co">// Font size for axis labels</span></span>
+<span id="cb8-279"><a href="#cb8-279" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-tick-font-size"</span><span class="op">:</span> <span class="st">"14px"</span>    <span class="co">// Font size for axis ticks</span></span>
+<span id="cb8-280"><a href="#cb8-280" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-281"><a href="#cb8-281" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<section id="explanation-3" class="level2">
+<h2 class="anchored" data-anchor-id="explanation-3">Explanation:</h2>
+<p>This interactive bar chart shows how individuals with different education levels respond when asked about their tendency to overanalyze decisions. It helps identify whether people with higher education levels tend to overanalyze more.</p>
+</section>
+</section>
+<section id="cognitive-bias-by-age" class="level1">
+<h1>5. Cognitive Bias by Age</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9" data-startfrom="292" data-source-offset="-60"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 291;"><span id="cb9-292"><a href="#cb9-292" aria-hidden="true" tabindex="-1"></a>viewof cognitive_bias_filter <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb9-293"><a href="#cb9-293" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Yes"</span><span class="op">,</span> <span class="st">"No"</span><span class="op">,</span> <span class="st">"Unsure"</span>]<span class="op">,</span></span>
+<span id="cb9-294"><a href="#cb9-294" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"Yes"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Select Cognitive Bias Status:"</span> }</span>
+<span id="cb9-295"><a href="#cb9-295" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-296"><a href="#cb9-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-297"><a href="#cb9-297" aria-hidden="true" tabindex="-1"></a><span class="co">// ✅ Use a unique name for filtered data</span></span>
+<span id="cb9-298"><a href="#cb9-298" aria-hidden="true" tabindex="-1"></a>filtered_cognitive_bias_data <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">cognitive_bias</span> <span class="op">===</span> cognitive_bias_filter)</span>
+<span id="cb9-299"><a href="#cb9-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-300"><a href="#cb9-300" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb9-301"><a href="#cb9-301" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb9-302"><a href="#cb9-302" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(filtered_cognitive_bias_data<span class="op">,</span> {</span>
+<span id="cb9-303"><a href="#cb9-303" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"age"</span><span class="op">,</span></span>
+<span id="cb9-304"><a href="#cb9-304" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"decision_confidence"</span><span class="op">,</span></span>
+<span id="cb9-305"><a href="#cb9-305" aria-hidden="true" tabindex="-1"></a>      <span class="dt">r</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">decision_confidence</span> <span class="op">*</span> <span class="dv">2</span><span class="op">,</span> <span class="co">// Bubble size reflects confidence</span></span>
+<span id="cb9-306"><a href="#cb9-306" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> {</span>
+<span id="cb9-307"><a href="#cb9-307" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (d<span class="op">.</span><span class="at">cognitive_bias</span> <span class="op">===</span> <span class="st">"Yes"</span>) <span class="cf">return</span> <span class="st">"steelblue"</span><span class="op">;</span></span>
+<span id="cb9-308"><a href="#cb9-308" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (d<span class="op">.</span><span class="at">cognitive_bias</span> <span class="op">===</span> <span class="st">"No"</span>) <span class="cf">return</span> <span class="st">"darkred"</span><span class="op">;</span></span>
+<span id="cb9-309"><a href="#cb9-309" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"gold"</span><span class="op">;</span> <span class="co">// For "Unsure"</span></span>
+<span id="cb9-310"><a href="#cb9-310" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb9-311"><a href="#cb9-311" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span><span class="op">,</span> <span class="co">// Bubble border</span></span>
+<span id="cb9-312"><a href="#cb9-312" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`Age: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">age</span><span class="sc">}\n</span><span class="vs">Confidence: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">decision_confidence</span><span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb9-313"><a href="#cb9-313" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb9-314"><a href="#cb9-314" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb9-315"><a href="#cb9-315" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Age"</span> }<span class="op">,</span></span>
+<span id="cb9-316"><a href="#cb9-316" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Decision Confidence"</span> }<span class="op">,</span></span>
+<span id="cb9-317"><a href="#cb9-317" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb9-318"><a href="#cb9-318" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb9-319"><a href="#cb9-319" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb9-320"><a href="#cb9-320" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font-size"</span><span class="op">:</span> <span class="st">"14px"</span><span class="op">,</span></span>
+<span id="cb9-321"><a href="#cb9-321" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-label-font-size"</span><span class="op">:</span> <span class="st">"16px"</span><span class="op">,</span></span>
+<span id="cb9-322"><a href="#cb9-322" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axis-tick-font-size"</span><span class="op">:</span> <span class="st">"14px"</span></span>
+<span id="cb9-323"><a href="#cb9-323" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-324"><a href="#cb9-324" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<section id="explanation-4" class="level2">
+<h2 class="anchored" data-anchor-id="explanation-4">Explanation:</h2>
+<p>This interactive bubble plot showcases the relationship between age and decision confidence, filtered by cognitive bias status. The size of each bubble reflects the level of confidence for each individual. This representation highlights trends in confidence levels across different ages while providing an intuitive visual cue through bubble sizes.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhdGEgPSBGaWxlQXR0YWNobWVudCgnZGVjaXNpb25fZGF0YS5jc3YnKS5jc3YoeyB0eXBlZDogdHJ1ZSB9KVxuXG52aWV3b2YgZWR1Y2F0aW9uX2ZpbHRlciA9IElucHV0cy5zZWxlY3QoXG4gIFtcIkhpZ2ggc2Nob29sIG9yIGJlbG93XCIsIFwiVW5kZXJncmFkdWF0ZSBkZWdyZWVcIiwgXCJHcmFkdWF0ZSBkZWdyZWVcIiwgXCJPdGhlclwiXSxcbiAgeyB2YWx1ZTogXCJVbmRlcmdyYWR1YXRlIGRlZ3JlZVwiLCBsYWJlbDogXCJTZWxlY3QgRWR1Y2F0aW9uIExldmVsOlwiIH1cbilcblxuZmlsdGVyZWRfZGF0YSA9IGRhdGEuZmlsdGVyKGQgPT4gZC5lZHVjYXRpb24gPT09IGVkdWNhdGlvbl9maWx0ZXIpXG5cblBsb3QuZG90KGZpbHRlcmVkX2RhdGEsIHtcbiAgeDogXCJhZ2VcIixcbiAgeTogXCJkZWNpc2lvbl9jb25maWRlbmNlXCIsXG4gIHN0cm9rZTogZCA9PiB7XG4gICAgaWYgKGQuZWR1Y2F0aW9uID09PSBcIkhpZ2ggc2Nob29sIG9yIGJlbG93XCIpIHJldHVybiBcInN0ZWVsYmx1ZVwiO1xuICAgIGlmIChkLmVkdWNhdGlvbiA9PT0gXCJVbmRlcmdyYWR1YXRlIGRlZ3JlZVwiKSByZXR1cm4gXCJkYXJrcmVkXCI7XG4gICAgaWYgKGQuZWR1Y2F0aW9uID09PSBcIkdyYWR1YXRlIGRlZ3JlZVwiKSByZXR1cm4gXCJnb2xkXCI7XG4gICAgcmV0dXJuIFwicHVycGxlXCI7XG4gIH0sXG4gIGZpbGw6IGQgPT4ge1xuICAgIGlmIChkLmVkdWNhdGlvbiA9PT0gXCJIaWdoIHNjaG9vbCBvciBiZWxvd1wiKSByZXR1cm4gXCJzdGVlbGJsdWVcIjtcbiAgICBpZiAoZC5lZHVjYXRpb24gPT09IFwiVW5kZXJncmFkdWF0ZSBkZWdyZWVcIikgcmV0dXJuIFwiZGFya3JlZFwiO1xuICAgIGlmIChkLmVkdWNhdGlvbiA9PT0gXCJHcmFkdWF0ZSBkZWdyZWVcIikgcmV0dXJuIFwiZ29sZFwiO1xuICAgIHJldHVybiBcInB1cnBsZVwiO1xuICB9LFxuICByOiA0LCAvLyBTbGlnaHRseSBiaWdnZXIgZm9yIGVhc2llciBob3ZlclxuICB0aXRsZTogZCA9PiBgQWdlOiAke2QuYWdlfVxcbkNvbmZpZGVuY2U6ICR7ZC5kZWNpc2lvbl9jb25maWRlbmNlfVxcbkVkdWNhdGlvbjogJHtkLmVkdWNhdGlvbn1gIC8vIEhvdmVyIFRvb2x0aXBcbn0pLnBsb3Qoe1xuICBzdHlsZToge1xuICAgIFwiZm9udC1zaXplXCI6IFwiMTRweFwiLCAgICAgICAgICAgLy8gR2VuZXJhbCBmb250IHNpemVcbiAgICBcImF4aXMtbGFiZWwtZm9udC1zaXplXCI6IFwiMTZweFwiLCAvLyBBeGlzIGxhYmVsIHNpemVcbiAgICBcImF4aXMtdGljay1mb250LXNpemVcIjogXCIxNHB4XCIgICAvLyBBeGlzIHRpY2sgc2l6ZVxuICB9XG59KVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgZWR1Y2F0aW9uX2ZpbHRlcl9hZ2UgPSBJbnB1dHMuc2VsZWN0KFxuICBbXCJIaWdoIHNjaG9vbCBvciBiZWxvd1wiLCBcIlVuZGVyZ3JhZHVhdGUgZGVncmVlXCIsIFwiR3JhZHVhdGUgZGVncmVlXCIsIFwiT3RoZXJcIl0sXG4gIHsgdmFsdWU6IFwiVW5kZXJncmFkdWF0ZSBkZWdyZWVcIiwgbGFiZWw6IFwiU2VsZWN0IEVkdWNhdGlvbiBMZXZlbDpcIiB9XG4pXG5cbmZpbHRlcmVkX2FnZSA9IGRhdGEuZmlsdGVyKGQgPT4gZC5lZHVjYXRpb24gPT09IGVkdWNhdGlvbl9maWx0ZXJfYWdlKVxuXG5QbG90LnJlY3RZKFxuICBmaWx0ZXJlZF9hZ2UsXG4gIFBsb3QuYmluWChcbiAgICB7IHk6IFwiY291bnRcIiwgdGl0bGU6IChkLCBpKSA9PiBgQWdlIFJhbmdlOiAke2kueDB9IC0gJHtpLngxfVxcbkNvdW50OiAke2kubGVuZ3RofVxcbkVkdWNhdGlvbjogJHtlZHVjYXRpb25fZmlsdGVyX2FnZX1gIH0sIC8vIEhvdmVyIFRvb2x0aXBcbiAgICB7IHg6IFwiYWdlXCIsIHRocmVzaG9sZHM6IDEwLCBmaWxsOiBkID0+IHtcbiAgICAgIGlmIChkLmVkdWNhdGlvbiA9PT0gXCJIaWdoIHNjaG9vbCBvciBiZWxvd1wiKSByZXR1cm4gXCJzdGVlbGJsdWVcIjtcbiAgICAgIGlmIChkLmVkdWNhdGlvbiA9PT0gXCJVbmRlcmdyYWR1YXRlIGRlZ3JlZVwiKSByZXR1cm4gXCJkYXJrcmVkXCI7XG4gICAgICBpZiAoZC5lZHVjYXRpb24gPT09IFwiR3JhZHVhdGUgZGVncmVlXCIpIHJldHVybiBcImdvbGRcIjtcbiAgICAgIHJldHVybiBcInB1cnBsZVwiO1xuICAgIH19XG4gIClcbikucGxvdCh7XG4gIHN0eWxlOiB7XG4gICAgXCJmb250LXNpemVcIjogXCIxNHB4XCIsICAgICAgICAgICAgLy8gR2VuZXJhbCBmb250IHNpemVcbiAgICBcImF4aXMtbGFiZWwtZm9udC1zaXplXCI6IFwiMTZweFwiLCAgLy8gQXhpcyBsYWJlbCBzaXplXG4gICAgXCJheGlzLXRpY2stZm9udC1zaXplXCI6IFwiMTRweFwiICAgIC8vIEF4aXMgdGljayBzaXplXG4gIH1cbn0pXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIGdlbmRlcl9maWx0ZXIgPSBJbnB1dHMuc2VsZWN0KFxuICBbXCJNYWxlXCIsIFwiRmVtYWxlXCIsIFwiTm9uLWJpbmFyeVwiLCBcIlByZWZlciBub3QgdG8gc2F5XCJdLFxuICB7IHZhbHVlOiBcIkZlbWFsZVwiLCBsYWJlbDogXCJTZWxlY3QgR2VuZGVyOlwiIH1cbilcblxuZmlsdGVyZWRfZ2VuZGVyX2RhdGEgPSBkYXRhLmZpbHRlcihkID0+IGQuZ2VuZGVyID09PSBnZW5kZXJfZmlsdGVyKVxuXG5QbG90LmJhclkoXG4gIGZpbHRlcmVkX2dlbmRlcl9kYXRhLFxuICBQbG90Lmdyb3VwWChcbiAgICB7IHk6IFwiY291bnRcIiwgdGl0bGU6IChkKSA9PiBgRGVjaXNpb24gU3R5bGU6ICR7ZC5kZWNpc2lvbl9zdHlsZX1cXG5Db3VudDogJHtkLmxlbmd0aH1cXG5HZW5kZXI6ICR7Z2VuZGVyX2ZpbHRlcn1gIH0sIC8vIEhvdmVyIFRvb2x0aXBcbiAgICB7IHg6IFwiZGVjaXNpb25fc3R5bGVcIiwgZmlsbDogXCJkZWNpc2lvbl9zdHlsZVwiIH1cbiAgKVxuKS5wbG90KHtcbiAgc3R5bGU6IHtcbiAgICBcImZvbnQtc2l6ZVwiOiBcIjE0cHhcIiwgICAgICAgICAgICAvLyBHZW5lcmFsIGZvbnQgc2l6ZVxuICAgIFwiYXhpcy1sYWJlbC1mb250LXNpemVcIjogXCIxNnB4XCIsICAvLyBBeGlzIGxhYmVsIHNpemVcbiAgICBcImF4aXMtdGljay1mb250LXNpemVcIjogXCIxNHB4XCIgICAgLy8gQXhpcyB0aWNrIHNpemVcbiAgfVxufSlcblxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyBSZW5hbWVkIHRoZSBmaWx0ZXIgdG8gYXZvaWQgZHVwbGljYXRpb24gZXJyb3JcbnZpZXdvZiBlZHVjYXRpb25fZmlsdGVyX292ZXJhbmFseXNpcyA9IElucHV0cy5zZWxlY3QoXG4gIFtcIkhpZ2ggc2Nob29sIG9yIGJlbG93XCIsIFwiVW5kZXJncmFkdWF0ZSBkZWdyZWVcIiwgXCJHcmFkdWF0ZSBkZWdyZWVcIiwgXCJPdGhlclwiXSxcbiAgeyB2YWx1ZTogXCJVbmRlcmdyYWR1YXRlIGRlZ3JlZVwiLCBsYWJlbDogXCJTZWxlY3QgRWR1Y2F0aW9uIExldmVsOlwiIH1cbilcblxuLy8gQXBwbHkgdGhlIG5ldyBmaWx0ZXIgdmFyaWFibGVcbmZpbHRlcmVkX2VkdWNhdGlvbl9kYXRhID0gZGF0YS5maWx0ZXIoZCA9PiBkLmVkdWNhdGlvbiA9PT0gZWR1Y2F0aW9uX2ZpbHRlcl9vdmVyYW5hbHlzaXMpXG5cbi8vIENyZWF0ZSB0aGUgaW50ZXJhY3RpdmUgYmFyIGNoYXJ0IHdpdGggdG9vbHRpcHNcblBsb3QuYmFyWShcbiAgZmlsdGVyZWRfZWR1Y2F0aW9uX2RhdGEsXG4gIFBsb3QuZ3JvdXBYKFxuICAgIHsgXG4gICAgICB5OiBcImNvdW50XCIsIFxuICAgICAgdGl0bGU6IChkKSA9PiBgT3ZlcmFuYWx5c2lzOiAke2Qub3ZlcmFuYWx5c2lzfVxcbkNvdW50OiAke2QubGVuZ3RofVxcbkVkdWNhdGlvbjogJHtlZHVjYXRpb25fZmlsdGVyX292ZXJhbmFseXNpc31gIC8vIEhvdmVyIFRvb2x0aXBcbiAgICB9LFxuICAgIHsgeDogXCJvdmVyYW5hbHlzaXNcIiwgZmlsbDogXCJvdmVyYW5hbHlzaXNcIiB9XG4gIClcbikucGxvdCh7XG4gIHN0eWxlOiB7XG4gICAgXCJmb250LXNpemVcIjogXCIxNHB4XCIsICAgICAgICAgICAgLy8gRm9udCBzaXplIGZvciBnZW5lcmFsIHRleHRcbiAgICBcImF4aXMtbGFiZWwtZm9udC1zaXplXCI6IFwiMTZweFwiLCAgLy8gRm9udCBzaXplIGZvciBheGlzIGxhYmVsc1xuICAgIFwiYXhpcy10aWNrLWZvbnQtc2l6ZVwiOiBcIjE0cHhcIiAgICAvLyBGb250IHNpemUgZm9yIGF4aXMgdGlja3NcbiAgfVxufSlcblxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyDinIUgVXNlIGEgdW5pcXVlIG5hbWUgZm9yIHRoZSBkcm9wZG93biB0byBhdm9pZCBjb25mbGljdHNcbnZpZXdvZiBjb2duaXRpdmVfYmlhc19maWx0ZXIgPSBJbnB1dHMuc2VsZWN0KFxuICBbXCJZZXNcIiwgXCJOb1wiLCBcIlVuc3VyZVwiXSxcbiAgeyB2YWx1ZTogXCJZZXNcIiwgbGFiZWw6IFwiU2VsZWN0IENvZ25pdGl2ZSBCaWFzIFN0YXR1czpcIiB9XG4pXG5cbi8vIOKchSBVc2UgYSB1bmlxdWUgbmFtZSBmb3IgZmlsdGVyZWQgZGF0YVxuZmlsdGVyZWRfY29nbml0aXZlX2JpYXNfZGF0YSA9IGRhdGEuZmlsdGVyKGQgPT4gZC5jb2duaXRpdmVfYmlhcyA9PT0gY29nbml0aXZlX2JpYXNfZmlsdGVyKVxuXG5QbG90LnBsb3Qoe1xuICBtYXJrczogW1xuICAgIFBsb3QuZG90KGZpbHRlcmVkX2NvZ25pdGl2ZV9iaWFzX2RhdGEsIHtcbiAgICAgIHg6IFwiYWdlXCIsXG4gICAgICB5OiBcImRlY2lzaW9uX2NvbmZpZGVuY2VcIixcbiAgICAgIHI6IGQgPT4gZC5kZWNpc2lvbl9jb25maWRlbmNlICogMiwgLy8gQnViYmxlIHNpemUgcmVmbGVjdHMgY29uZmlkZW5jZVxuICAgICAgZmlsbDogZCA9PiB7XG4gICAgICAgIGlmIChkLmNvZ25pdGl2ZV9iaWFzID09PSBcIlllc1wiKSByZXR1cm4gXCJzdGVlbGJsdWVcIjtcbiAgICAgICAgaWYgKGQuY29nbml0aXZlX2JpYXMgPT09IFwiTm9cIikgcmV0dXJuIFwiZGFya3JlZFwiO1xuICAgICAgICByZXR1cm4gXCJnb2xkXCI7IC8vIEZvciBcIlVuc3VyZVwiXG4gICAgICB9LFxuICAgICAgc3Ryb2tlOiBcImJsYWNrXCIsIC8vIEJ1YmJsZSBib3JkZXJcbiAgICAgIHRpdGxlOiBkID0+IGBBZ2U6ICR7ZC5hZ2V9XFxuQ29uZmlkZW5jZTogJHtkLmRlY2lzaW9uX2NvbmZpZGVuY2V9YFxuICAgIH0pXG4gIF0sXG4gIHg6IHsgbGFiZWw6IFwiQWdlXCIgfSxcbiAgeTogeyBsYWJlbDogXCJEZWNpc2lvbiBDb25maWRlbmNlXCIgfSxcbiAgd2lkdGg6IDYwMCxcbiAgaGVpZ2h0OiA0MDAsXG4gIHN0eWxlOiB7XG4gICAgXCJmb250LXNpemVcIjogXCIxNHB4XCIsXG4gICAgXCJheGlzLWxhYmVsLWZvbnQtc2l6ZVwiOiBcIjE2cHhcIixcbiAgICBcImF4aXMtdGljay1mb250LXNpemVcIjogXCIxNHB4XCJcbiAgfVxufSlcblxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdlZHVjYXRpb25fZmlsdGVyJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2VkdWNhdGlvbl9maWx0ZXJfYWdlJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2dlbmRlcl9maWx0ZXInKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnZWR1Y2F0aW9uX2ZpbHRlcl9vdmVyYW5hbHlzaXMnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnY29nbml0aXZlX2JpYXNfZmlsdGVyJykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../tab-dashboard";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

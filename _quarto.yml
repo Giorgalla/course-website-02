@@ -16,6 +16,8 @@ website:
         text: Presentations        
       - href: tab-SurveyDataAnalysis/DataAnalysis-index.qmd
         text: Data Analysis
+      - href: tab-dashboard/interactive-index.qmd
+        text: Interactive Dashboard
     logo: images/logo.png
 
 format:
