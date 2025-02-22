@@ -327,3 +327,6 @@ Plot.plot({
 ## Explanation:
 This interactive bubble plot showcases the relationship between age and decision confidence, filtered by cognitive bias status. The size of each bubble reflects the level of confidence for each individual. This representation highlights trends in confidence levels across different ages while providing an intuitive visual cue through bubble sizes.
 
+
+
+

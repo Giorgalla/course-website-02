@@ -18,6 +18,8 @@ website:
         text: Data Analysis
       - href: tab-dashboard/interactive-index.qmd
         text: Interactive Dashboard
+      - href: tab-sentiment/analysis-index.qmd
+        text: Sentiment Analysis
     logo: images/logo.png
 
 format:

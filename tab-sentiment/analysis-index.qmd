@@ -1,0 +1,137 @@
+---
+title: 'Sentiment Analysis'
+format: 
+  html:
+    code-fold: true
+    code-summary: "Code" 
+---
+
+
+```{r datatables, include=FALSE}
+library(tibble)
+library(readr)
+library(knitr)
+library(tidyverse)
+library(ggplot2)
+
+# Create the comments list
+comments <- c(
+  # Positive Comments
+  "I feel confident when making decisions, especially when I have all the necessary information.",
+  "The decision-making process empowers me to take control and shape my future.",
+  "I enjoy analyzing options and finding the most logical solution.",
+  "Making decisions helps me grow and develop critical thinking skills.",
+  "I love the sense of accomplishment that comes with making the right decision.",
+  "I find the process exciting, especially when it leads to successful outcomes.",
+  "Decision-making brings out my problem-solving abilities, which I’m proud of.",
+  "I feel energized and focused when navigating through choices.",
+  "I trust my instincts and usually feel positive about the decisions I make.",
+  "The process makes me feel empowered and responsible for my own success.",
+  "I enjoy strategic thinking and mapping out different possibilities.",
+  "Making decisions helps me feel productive and purposeful.",
+  "I like the challenge of weighing pros and cons to make informed choices.",
+  "I feel a sense of growth every time I face complex decision-making situations.",
+  "I’m confident in my ability to make decisions under pressure.",
+  "Problem-solving through decision-making brings me a sense of satisfaction.",
+  "I appreciate how the process teaches me patience and perseverance.",
+  "I enjoy collaborating with others during group decision-making sessions.",
+  "Decision-making often leads me to discover new strengths within myself.",
+  "I feel a strong sense of clarity and direction after making a decision.",
+  
+  # Negative Comments
+  "I often feel overwhelmed by too many options, leading to decision fatigue.",
+  "The fear of making the wrong choice sometimes paralyzes me.",
+  "Decision-making makes me anxious, especially when outcomes are uncertain.",
+  "I tend to overthink and second-guess my decisions, which can be stressful.",
+  "The pressure to make the ‘perfect’ choice often leaves me feeling frustrated.",
+  "I dislike decision-making when it involves complex or high-stakes situations.",
+  "The process can feel draining and time-consuming, especially with deadlines.",
+  "I sometimes regret my decisions, leading to feelings of disappointment.",
+  "I struggle with indecisiveness, which makes the process frustrating.",
+  "I often feel stuck, fearing the consequences of a wrong decision.",
+  
+  # Neutral Comments
+  "I see decision-making as a necessary part of life, neither good nor bad.",
+  "The process depends on the situation—sometimes it’s simple, other times complex.",
+  "I don’t have strong feelings about decision-making; I just try to be logical.",
+  "It’s a process that requires focus, but I don’t find it particularly enjoyable or frustrating.",
+  "Some decisions are easy, while others require more thought—I approach them case by case."
+)
+
+# Create tibble with unique IDs and comments
+comments_df <- tibble(
+  ID = 1:length(comments),
+  Comment = comments
+)
+
+# Write the data to a CSV file
+write.csv(comments_df, "decision_making_comments_with_id.csv", row.names = FALSE)
+  
+```
+
+```{r}
+comments_df <- read_csv("decision_making_comments_with_id.csv", show_col_types = FALSE)
+
+# Check the first few rows and render as an HTML table
+head(comments_df, 35) %>%
+  kable()
+```
+
+```{r}
+df_tw <- read_csv("decision_making_comments_with_id.csv", show_col_types = FALSE)
+
+# Add a simple sentiment category for demonstration purposes
+# (In a real case, you would apply sentiment analysis here)
+df_tw <- df_tw %>%
+  mutate(sentiment_category = case_when(
+    str_detect(Comment, "confident|empowered|positive|love|enjoy|exciting|proud|successful|satisfaction|productive|focused|growth") ~ "Positive",
+    str_detect(Comment, "overwhelmed|anxious|paralyzes|frustrated|draining|regret|indecisiveness|stuck|stressful") ~ "Negative",
+    TRUE ~ "Neutral"
+  ))
+
+# Create the frequency table for sentiment
+overall_sentiment <- df_tw %>%
+  count(sentiment_category) %>%
+  mutate(prop = n / sum(n) * 100) %>%  # Convert to percentage
+  mutate(prop = round(prop, 1)) %>%    # Round to 1 decimal place
+  rename(
+    `Sentiment` = sentiment_category,
+    `Proportion` = prop,
+    `Count` = n
+  )
+
+# Create table and render it
+overall_sentiment %>%
+  kable()
+```
+
+```{r}
+overall_sentiment$Sentiment <- factor(overall_sentiment$Sentiment, levels = c("Negative", "Neutral", "Positive"))
+
+# Create the bar plot using ggplot
+ggplot(overall_sentiment, aes(x = Sentiment, y = Proportion, fill = Sentiment)) +
+  geom_bar(stat = "identity", color = "black") +  # Black border for bars
+  geom_text(aes(label = round(Proportion, 1)), vjust = -0.5, color = "black", size = 5) +  # Add labels
+  scale_fill_manual(values = c("Positive" = "green", "Negative" = "red", "Neutral" = "grey")) +  # Custom colors
+  labs(
+    title = "Sentiment Overall Distribution",
+    x = "Sentiment",
+    y = "Proportion (%)"
+  ) +
+  theme_minimal() +  # Clean theme
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),  # Centered title
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10)
+  )
+
+```
+
+
+
+
+
+
+
+
+

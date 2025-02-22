@@ -31,5 +31,14 @@
   },
   "tab-dashboard/interactive-index.qmd": {
     "interactive-index.html": "44a5f3ec"
+  },
+  "tab-sentimentanalisys /sa-index.qmd": {
+    "sa-index.html": "e3e4615a"
+  },
+  "tab-sentiment/interactive-index.qmd": {
+    "interactive-index.html": "445dbc23"
+  },
+  "tab-sentiment/analysis-index.qmd": {
+    "analysis-index.html": "b7bb8978"
   }
 }
