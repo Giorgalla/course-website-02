@@ -11,7 +11,7 @@ website:
       - href: tab-one/tab-one-index.qmd
         text: DMP
       - href: tab-iframe/iframe-index.qmd
-        text: Questionnair
+        text: Questionnaire
       - href: tab-presentation/presentation-index.qmd
         text: Presentations        
       - href: tab-SurveyDataAnalysis/DataAnalysis-index.qmd
